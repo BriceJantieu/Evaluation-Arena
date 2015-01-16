@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration
+    PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-2.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- local connection properties -->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://176.31.251.101:3306/EvaluationArena
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<property name="hibernate.connection.username">EvaluationArena</property>
+		<property name="hibernate.connection.password">EvaluationArena</property>
+		<!-- property name="hibernate.connection.pool_size"></property -->
+		<!-- dialect for MySQL -->
+		<property name="dialect">
+			net.sf.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.use_outer_join">true</property>
+		<property name="hibernate.transaction.factory_class">
+			net.sf.hibernate.transaction.JDBCTransactionFactory
+		</property>
+		<mapping resource="PromoUtilisateur.hbm" />
+		<mapping resource="Utilisateur.hbm" />
+		<mapping resource="PromoSession.hbm" />
+		<mapping resource="QuestionMatiere.hbm" />
+		<mapping resource="UtilisateurSession.hbm" />
+		<mapping resource="SessionState.hbm" />
+		<mapping resource="QuestionDifficulty.hbm" />
+		<mapping resource="QuestionReponse.hbm" />
+		<mapping resource="Categorie.hbm" />
+		<mapping resource="Matiere.hbm" />
+		<mapping resource="PromoUtilisateurState.hbm" />
+		<mapping resource="Examen.hbm" />
+		<mapping resource="UtilisateurSessionReponse.hbm" />
+		<mapping resource="UtilisateurRole.hbm" />
+		<mapping resource="Session.hbm" />
+		<mapping resource="Question.hbm" />
+		<mapping resource="Role.hbm" />
+		<mapping resource="ExamenQuestion.hbm" />
+		<mapping resource="Reponse.hbm" />
+		<mapping resource="Promo.hbm" />
+	</session-factory>
+</hibernate-configuration>
