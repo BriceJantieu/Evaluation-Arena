@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="Reponse" table="Reponse">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="Name"
+			length="100"
+			name="Name"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="Content"
+			length="500"
+			name="Content"
+			not-null="true"
+			type="string"
+		 />
+
+		<many-to-one
+			class="Categorie"
+			name="Categorie"
+			not-null="true"
+		>
+			<column name="Categorie_ID" />
+		</many-to-one>
+		<set inverse="true" name="QuestionReponseSet">
+			<key column="Reponse_ID" />
+			<one-to-many class="QuestionReponse" />
+		</set>
+		<set
+			cascade="all"
+			name="UtilisateurSessionSet"
+			table="Utilisateur_Session_Reponse"
+		>
+			<key column="Reponse_ID" />
+			<many-to-many class="UtilisateurSession" column="Utilisateur_Session_ID" />
+		</set>
+	</class>
+</hibernate-mapping>

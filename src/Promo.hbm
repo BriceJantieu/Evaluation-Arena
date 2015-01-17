@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="Promo" table="Promo">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="CreationDate"
+			length="10"
+			name="CreationDate"
+			not-null="true"
+			type="date"
+		 />
+		<property
+			column="Libelle"
+			length="50"
+			name="Libelle"
+			not-null="true"
+			type="string"
+		 />
+
+		<set inverse="true" name="PromoUtilisateurSet">
+			<key column="Promo_ID" />
+			<one-to-many class="PromoUtilisateur" />
+		</set>
+		<set inverse="true" name="PromoSessionSet">
+			<key column="Promo_ID" />
+			<one-to-many class="PromoSession" />
+		</set>
+	</class>
+</hibernate-mapping>

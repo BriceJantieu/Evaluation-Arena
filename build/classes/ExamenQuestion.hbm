@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="ExamenQuestion" table="Examen_Question">
+		<composite-id class="ExamenQuestionPK" name="Id">
+			<key-many-to-one
+				class="Examen"
+				column="Examen_ID"
+				name="Examen"
+			 />
+			<key-many-to-one
+				class="Question"
+				column="Question_ID"
+				name="Question"
+			 />
+		</composite-id>
+		<property
+			column="Weight"
+			length="10"
+			name="Weight"
+			not-null="true"
+			type="integer"
+		 />
+		<property
+			column="Order"
+			length="10"
+			name="Order"
+			not-null="true"
+			type="integer"
+		 />
+	</class>
+</hibernate-mapping>

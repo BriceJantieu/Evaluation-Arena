@@ -13,11 +13,11 @@
 		Libellé de la question
 		<input name="question" type="text"/>
 		
-		Matière
-		<select name="matiere">
-			<option selected value="0">Matière</option>
-			<c:forEach var="matiere" items="${matieres}">
-				<option value="${matiere.id}">${matiere.name}</option>
+		Catégories
+		<select name="categorie">
+			<option selected value="0">Catégorie</option>
+			<c:forEach var="categorie" items="${categories}">
+				<option value="${categorie.id}">${categorie.name}</option>
 			</c:forEach>
 		</select>
 		

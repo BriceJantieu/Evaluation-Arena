@@ -10,11 +10,11 @@
 <body>
 
 <form action="questions.html" method="get">
-	<select name="matiere"
+	<select name="categorie"
 	onchange="submit()">
-		<option selected value="0">Matière</option>
-		<c:forEach var="matiere" items="${matieres}">
-			<option value="${matiere.id}">${matiere.name}</option>
+		<option selected value="0">Catégories</option>
+		<c:forEach var="categorie" items="${categories}">
+			<option value="${categorie.id}">${categorie.name}</option>
 		</c:forEach>
 	</select>
 </form>
@@ -30,7 +30,7 @@
 					<tr>
 						<td> ${question.id} </td>
 						<td> ${question.content} </td>
-						<td> ${question.matiere.name} </td>
+						<td> ${question.categorie.name} </td>
 					</tr>
 				</c:forEach>
 			</table>
