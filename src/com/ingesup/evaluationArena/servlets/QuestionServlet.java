@@ -61,7 +61,7 @@ public class QuestionServlet extends HttpServlet {
 			
 			if(!selectedMatiereId.equals("0"))
 				categories = HibernateUtil.currentSession().find("from Categorie where Matiere_ID = " + selectedMatiereId);
-		
+			//TODO ALLOU A WAK BAR
 			categories = HibernateUtil.currentSession().find("from Categorie");
 
 			questions = HibernateUtil.currentSession().find(questionQuery);

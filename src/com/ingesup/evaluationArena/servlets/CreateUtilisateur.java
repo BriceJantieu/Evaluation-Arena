@@ -1,6 +1,9 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Role;
+import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 /**
@@ -36,17 +41,18 @@ private String urlCreateUtilisateur;
         super();
         urlCreateUtilisateur = "/WEB-INF/views/utilisateurs/create.jsp";//getInitParameter("urlCreateUtilisateur").toString();
     }
-
+    
+    private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+    private List<Role> Groupes = null;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Role> groupes = null;
 		try {
-			groupes = HibernateUtil.currentSession().find("from Role");
+			Groupes = HibernateUtil.currentSession().find("from Role");
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		request.setAttribute("groupes", groupes);
+		request.setAttribute("groupes", Groupes);
 		
 		getServletContext().getRequestDispatcher(urlCreateUtilisateur).forward(request, response);
 	}
@@ -62,6 +68,34 @@ private String urlCreateUtilisateur;
 		String birthdate = request.getParameter("birthdate");
 		String groupe = request.getParameter("groupe");
 		
-		System.out.println("Question créée.");
+		Utilisateur newUser = new Utilisateur();
+		
+		newUser.setUsername(username);
+		newUser.setEmail(email);
+		newUser.setPassword(password);
+		newUser.setFirstName(firstname);
+		newUser.setLastName(lastname);
+		if(birthdate != null && !birthdate.isEmpty())
+			try {
+				newUser.setBirthDate(formater.parse(birthdate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		//newUser.setRole();
+		if(Groupes != null)
+		{
+			for (Role r : Groupes) {
+				if(r.getId().toString().equals(groupe))
+					newUser.setRole(r);
+			}
+		}
+		
+		Transaction t = null;
+		try {
+			t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(newUser);
+			t.commit();
+			
+		} catch (HibernateException ignored) {}
 	}
 }
