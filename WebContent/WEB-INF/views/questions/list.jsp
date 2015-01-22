@@ -10,11 +10,33 @@
 <body>
 
 <form action="questions.html" method="get">
+	<select name="categorie"
+		onchange="submit()">
+		<option id="0" value="0">Catégories</option>
+		<c:forEach var="categorie" items="${categories}">
+			<c:if test="${categorie.id == selectedCategorieId}">
+				<option selected="selected" value="${categorie.id}">${categorie.name}</option>
+			</c:if>
+			
+			<c:if test="${categorie.id != selectedCategorieId}">
+				<option value="${categorie.id}">${categorie.name}</option>
+			</c:if>
+		</c:forEach>
+	</select>
+</form>
+
+<form action="questions.html" method="get">
 	<select name="matiere"
-	onchange="submit()">
-		<option selected value="0">Matière</option>
+		onchange="submit()">
+		<option id="0" value="0">Matières</option>
 		<c:forEach var="matiere" items="${matieres}">
-			<option value="${matiere.id}">${matiere.name}</option>
+			<c:if test="${matiere.id == selectedMatiereId}">
+				<option selected="selected" value="${matiere.id}">${matiere.name}</option>
+			</c:if>
+			
+			<c:if test="${matiere.id != selectedMatiereId}">
+				<option value="${matiere.id}">${matiere.name}</option>
+			</c:if>
 		</c:forEach>
 	</select>
 </form>
@@ -22,15 +44,16 @@
 <table class="table table-strip">
 				<tr>
 					<td><strong>ID</strong></td>
-					<td><strong>nom</strong></td>
-					<td><strong>matière</strong></td>
-					<td></td>
+					<td><strong>Nom</strong></td>
+					<td><strong>Matière</strong></td>
+					<td><strong>Catégorie</strong>
 				</tr>
 				<c:forEach var="question" items="${questions}" >
 					<tr>
 						<td> ${question.id} </td>
 						<td> ${question.content} </td>
-						<td> ${question.matiere.name} </td>
+						<td> ${question.categorie.name} </td>
+						<td> ${question.categorie.matiere.libelle} </td>
 					</tr>
 				</c:forEach>
 			</table>

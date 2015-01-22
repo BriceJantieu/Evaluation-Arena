@@ -1,5 +1,4 @@
 package com.ingesup.evaluationArena.servlets;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.hibernate.HibernateException;
+
+import com.ingesup.evaluationArena.hibernate.beans.Categorie;
+import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 public class CreateQuestionServlet extends HttpServlet {
 
@@ -25,21 +29,15 @@ public class CreateQuestionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Matiere> matieres = new ArrayList<Matiere>();
-		Matiere matiere1 = new Matiere(1, "Matiere 1");
-
-		Matiere matiere2 = new Matiere(2, "Matiere 2");
-
-		Matiere matiere3 = new Matiere(3, "Matiere 3");
-
-		Matiere matiere4 = new Matiere(4, "Matiere 4");
 		
-		matieres.add(matiere1);
-		matieres.add(matiere2);
-		matieres.add(matiere3);
-		matieres.add(matiere4);
+		List<Categorie> categorie = null;
+		try {
+			categorie = HibernateUtil.currentSession().find("from Categorie");
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
 		
-		request.setAttribute("matieres", matieres);
+		request.setAttribute("categories", categorie);
 		
 		getServletContext().getRequestDispatcher(urlCreateQuestion).forward(request, response);
 		
@@ -50,7 +48,7 @@ public class CreateQuestionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String questionContent = req.getParameter("question");
-		String matiereId = req.getParameter("matiere");
+		String categorieId = req.getParameter("categorie");
 		String rightResponse = req.getParameter("rightResponse");
 		String response1Content = req.getParameter("response1");
 		String response2Content = req.getParameter("response2");

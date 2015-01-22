@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="UtilisateurRole" table="Utilisateur_Role">
+		<composite-id class="UtilisateurRolePK" name="Id">
+			<key-many-to-one
+				class="Role"
+				column="Role_ID"
+				name="Role"
+			 />
+			<key-many-to-one
+				class="Utilisateur"
+				column="Utilisateur_ID"
+				name="Utilisateur"
+			 />
+		</composite-id>
+		<property
+			column="ModifiedBy"
+			length="50"
+			name="ModifiedBy"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="CreationDate"
+			length="19"
+			name="CreationDate"
+			not-null="true"
+			type="timestamp"
+		 />
+		<property
+			column="UpdateDate"
+			length="19"
+			name="UpdateDate"
+			not-null="true"
+			type="timestamp"
+		 />
+	</class>
+</hibernate-mapping>

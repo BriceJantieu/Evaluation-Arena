@@ -24,6 +24,8 @@ public class HomeServlet extends HttpServlet {
 		// redirection vers la vue associée à l'action
 		//getServletContext().getRequestDispatcher(urlHome).forward(request, response);
 		//response.sendRedirect("/EvaluationArena/questions/create");
-		response.sendRedirect("/EvaluationArena/questions.html");
+		//response.sendRedirect("/EvaluationArena/questions.html");
+		//response.sendRedirect("/EvaluationArena/examens/create");
+		response.sendRedirect("/EvaluationArena/categories/create");
 	}
 }

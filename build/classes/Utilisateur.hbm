@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="Utilisateur" table="Utilisateur">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="Email"
+			length="50"
+			name="Email"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="Password"
+			length="50"
+			name="Password"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="Username"
+			length="50"
+			name="Username"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="FirstName"
+			length="50"
+			name="FirstName"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="CreationDate"
+			length="19"
+			name="CreationDate"
+			not-null="true"
+			type="timestamp"
+		 />
+		<property
+			column="LastName"
+			length="50"
+			name="LastName"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="BirthDate"
+			length="10"
+			name="BirthDate"
+			not-null="true"
+			type="date"
+		 />
+
+		<many-to-one
+			class="Role"
+			name="Role"
+			not-null="true"
+		>
+			<column name="Role_ID" />
+		</many-to-one>
+		<many-to-one
+			class="Promo"
+			name="Promo"
+			not-null="true"
+		>
+			<column name="Promo_ID" />
+		</many-to-one>
+		<set inverse="true" name="UtilisateurQuestionReponseSet">
+			<key column="Utilisateur_ID" />
+			<one-to-many class="UtilisateurQuestionReponse" />
+		</set>
+		<set inverse="true" name="ExmanenUtilisateurSet">
+			<key column="Utilisateur_ID" />
+			<one-to-many class="ExmanenUtilisateur" />
+		</set>
+	</class>
+</hibernate-mapping>

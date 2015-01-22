@@ -17,7 +17,15 @@
 		<select name="matiere">
 			<option selected value="0">Matière</option>
 			<c:forEach var="matiere" items="${matieres}">
-				<option value="${matiere.id}">${matiere.name}</option>
+				<option value="${matiere.id}">${matiere.libelle}</option>
+			</c:forEach>
+		</select>
+		
+		Catégorie
+		<select name="categorie">
+			<option selected value="0">Catégorie</option>
+			<c:forEach var="categorie" items="${categories}">
+				<option value="${categorie.id}">${categorie.name}</option>
 			</c:forEach>
 		</select>
 		
