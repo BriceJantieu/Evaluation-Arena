@@ -13,6 +13,7 @@
 		Libellé de la question
 		<input name="question" type="text"/>
 		
+<<<<<<< HEAD
 		Matière
 		<select name="matiere">
 			<option selected value="0">Matière</option>
@@ -22,6 +23,9 @@
 		</select>
 		
 		Catégorie
+=======
+		Catégories
+>>>>>>> e543bd804325543de5e38ed7186a005f88c12f3c
 		<select name="categorie">
 			<option selected value="0">Catégorie</option>
 			<c:forEach var="categorie" items="${categories}">

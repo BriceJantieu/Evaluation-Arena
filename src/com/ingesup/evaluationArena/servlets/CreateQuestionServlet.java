@@ -29,7 +29,6 @@ public class CreateQuestionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		
 		List<Categorie> categorie = null;
 		try {
 			categorie = HibernateUtil.currentSession().find("from Categorie");

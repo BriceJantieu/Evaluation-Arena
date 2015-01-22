@@ -19,7 +19,10 @@
 /UtilisateurRole.hbm
 /UtilisateurSession.hbm
 /UtilisateurSessionReponse.hbm
+<<<<<<< HEAD
 /hibernate.cfg.xml
 /ExamenPromo.hbm
 /ExmanenUtilisateur.hbm
 /UtilisateurQuestionReponse.hbm
+=======
+>>>>>>> e543bd804325543de5e38ed7186a005f88c12f3c

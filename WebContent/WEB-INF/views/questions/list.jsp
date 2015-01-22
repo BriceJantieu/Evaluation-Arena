@@ -38,6 +38,10 @@
 				<option value="${matiere.id}">${matiere.name}</option>
 			</c:if>
 		</c:forEach>
+		<option selected value="0">Catégories</option>
+		<c:forEach var="categorie" items="${categories}">
+			<option value="${categorie.id}">${categorie.name}</option>
+		</c:forEach>
 	</select>
 </form>
 
@@ -53,7 +57,10 @@
 						<td> ${question.id} </td>
 						<td> ${question.content} </td>
 						<td> ${question.categorie.name} </td>
+<<<<<<< HEAD
 						<td> ${question.categorie.matiere.libelle} </td>
+=======
+>>>>>>> e543bd804325543de5e38ed7186a005f88c12f3c
 					</tr>
 				</c:forEach>
 			</table>

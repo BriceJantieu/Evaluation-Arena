@@ -44,6 +44,10 @@ public class QuestionServlet extends HttpServlet {
 			selectedMatiereId = "0";
 		
 		List<Matiere> matieres = null;
+		
+		if(selectedCategorieId == null || selectedCategorieId.isEmpty())
+			selectedCategorieId = "0";
+
 		List<Categorie> categories = null;
 		List<Question> questions = null;
 		
@@ -57,7 +61,9 @@ public class QuestionServlet extends HttpServlet {
 			
 			if(!selectedMatiereId.equals("0"))
 				categories = HibernateUtil.currentSession().find("from Categorie where Matiere_ID = " + selectedMatiereId);
-			
+		
+			categories = HibernateUtil.currentSession().find("from Categorie");
+
 			questions = HibernateUtil.currentSession().find(questionQuery);
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
@@ -65,8 +71,6 @@ public class QuestionServlet extends HttpServlet {
 		
 		System.out.println("Categorie Sélectionnée : " + selectedCategorieId);
 
-		req.setAttribute("selectedMatiereId", selectedMatiereId);
-		req.setAttribute("matieres", matieres);
 		req.setAttribute("selectedCategorieId", selectedCategorieId);
 		req.setAttribute("categories", categories);
 		req.setAttribute("questions", questions);
