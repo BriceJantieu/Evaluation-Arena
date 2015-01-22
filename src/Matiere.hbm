@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="Matiere" table="Matiere">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="Libelle"
+			length="50"
+			name="Libelle"
+			not-null="true"
+			type="string"
+		 />
+		<set inverse="true" name="ExamenSet">
+			<key column="Matiere_ID" />
+			<one-to-many class="Examen" />
+		</set>
+	</class>
+</hibernate-mapping>

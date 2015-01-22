@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="Examen" table="Examen">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="Name"
+			length="50"
+			name="Name"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="CreatedBy"
+			length="50"
+			name="CreatedBy"
+			not-null="true"
+			type="string"
+		 />
+		<property
+			column="CreateDate"
+			length="19"
+			name="CreateDate"
+			not-null="true"
+			type="timestamp"
+		 />
+
+		<many-to-one
+			class="Matiere"
+			name="Matiere"
+			not-null="true"
+		>
+			<column name="Matiere_ID" />
+		</many-to-one>
+		<set inverse="true" name="ExamenQuestionSet">
+			<key column="Examen_ID" />
+			<one-to-many class="ExamenQuestion" />
+		</set>
+		<set inverse="true" name="ExamenPromoSet">
+			<key column="Examen_ID" />
+			<one-to-many class="ExamenPromo" />
+		</set>
+		<set inverse="true" name="ExmanenUtilisateurSet">
+			<key column="Examen_ID" />
+			<one-to-many class="ExmanenUtilisateur" />
+		</set>
+	</class>
+</hibernate-mapping>

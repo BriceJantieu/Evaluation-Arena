@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
@@ -36,8 +37,13 @@ public class CreateCategoryServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		Categorie c = new Categorie();
 		c.setName(name);
+		
+		Transaction t = null;
 		try {
-			HibernateUtil.currentSession().save(c);
+			t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(c);
+			t.commit();
+			
 		} catch (HibernateException ignored) {}
 	}	
 
