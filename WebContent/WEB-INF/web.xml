@@ -21,6 +21,7 @@
     <url-pattern>/questions.html</url-pattern>
     <url-pattern>/questions</url-pattern>
   </servlet-mapping>
+<<<<<<< HEAD
   
   <servlet-mapping>
     <servlet-name>PromoServlet</servlet-name>
@@ -59,6 +60,16 @@
   	<url-pattern>/promos/create</url-pattern>
   </servlet-mapping>
     
+=======
+  <servlet-mapping>
+    <servlet-name>CreateExamenServlet</servlet-name>
+    <url-pattern>/examens/create</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CreateCategoryServlet</servlet-name>
+    <url-pattern>/categories/create</url-pattern>
+  </servlet-mapping>
+>>>>>>> 67d811aa79f966887f70ebf73cdbadf65a218fe7
   <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.ingesup.evaluationArena.servlets.HomeServlet</servlet-class>
@@ -76,8 +87,8 @@
       <param-value>/WEB-INF/views/questions/list.jsp</param-value>
     </init-param>
   </servlet>
-  
   <servlet>
+<<<<<<< HEAD
     <servlet-name>PromoServlet</servlet-name>
     <servlet-class>com.ingesup.evaluationArena.servlets.PromoServlet</servlet-class>
     <init-param>
@@ -112,17 +123,24 @@
           <param-name>urlCreateExamen</param-name>
           <param-value>/WEB-INF/views/examens/create.jsp</param-value>
       </init-param>
+=======
+    <servlet-name>CreateExamenServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.CreateExamenServlet</servlet-class>
+    <init-param>
+      <param-name>urlCreateExamen</param-name>
+      <param-value>/WEB-INF/views/examens/create.jsp</param-value>
+    </init-param>
+>>>>>>> 67d811aa79f966887f70ebf73cdbadf65a218fe7
   </servlet>
-  
   <servlet>
-      <servlet-name>CreateCategoryServlet</servlet-name>
-      <servlet-class>com.ingesup.evaluationArena.servlets.CreateCategoryServlet</servlet-class>
-      
-      <init-param>
-          <param-name>urlCreateCategorie</param-name>
-          <param-value>/WEB-INF/views/categories/create.jsp</param-value>
-      </init-param>
+    <servlet-name>CreateCategoryServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.CreateCategoryServlet</servlet-class>
+    <init-param>
+      <param-name>urlCreateCategorie</param-name>
+      <param-value>/WEB-INF/views/categories/create.jsp</param-value>
+    </init-param>
   </servlet>
+<<<<<<< HEAD
   
   <servlet>
       <servlet-name>CreateMatiereServlet</servlet-name>
@@ -144,4 +162,6 @@
       </init-param>
   </servlet>
   
+=======
+>>>>>>> 67d811aa79f966887f70ebf73cdbadf65a218fe7
 </web-app>

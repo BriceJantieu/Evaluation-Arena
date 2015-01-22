@@ -5,16 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Utilisateurs Preview</title>
 </head>
 <body>
 
 <form action="utilisateurs.html" method="get">
-	<select name="groupe"
+	<select name="filter_role"
 	onchange="submit()">
-		<option selected value="0">Groupes Utilisateurs</option>
-		<c:forEach var="categorie" items="${groupes}">
-			<option value="${groupe.id}">${groupe.name}</option>
+		<option selected value="${selectedRoleId}">Groupes Utilisateurs</option>
+		<c:forEach var="role" items="${roleList}">
+			<c:if test="${role.id == selectedRoleId}">
+				<option selected="selected" value="${role.id} }">${role.libelle }</option>
+			</c:if>
+			<c:if test="${role.id != selectedRoleId }">
+				<option value="${role.id}">${role.libelle}</option>
+			</c:if>
 		</c:forEach>
 	</select>
 </form>
@@ -36,11 +41,11 @@
 						<td> ${utilisateur.id} </td>
 						<td> ${utilisateur.username} </td>
 						<td> ${utilisateur.email} </td>
-						<td> ${utilisateur.firstname} </td>
-						<td> ${utilisateur.lastname} </td>
+						<td> ${utilisateur.firstName} </td>
+						<td> ${utilisateur.lastName} </td>
 						<td> ${utilisateur.password} </td>
-						<td> ${utilisateur.birthdate} </td>
-						<td> ${utilisateur.role.name} </td>
+						<td> ${utilisateur.birthDate} </td>
+						<td> ${utilisateur.role.libelle} </td>
 					</tr>
 				</c:forEach>
 			</table>

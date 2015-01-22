@@ -1,4 +1,5 @@
 /com
+<<<<<<< HEAD
 /Categorie.hbm
 /Examen.hbm
 /ExamenQuestion.hbm
@@ -27,3 +28,5 @@
 =======
 >>>>>>> e543bd804325543de5e38ed7186a005f88c12f3c
 /create
+=======
+>>>>>>> 67d811aa79f966887f70ebf73cdbadf65a218fe7
