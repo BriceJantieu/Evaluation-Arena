@@ -1,7 +1,6 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,50 +14,36 @@ import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateCategoryServlet extends HttpServlet {
+public class CreateMatiereServlet extends HttpServlet {
 
-	private String urlCreateCategorie;
-	
-	private List<Matiere> matieres;
+	private String urlCreateMatiere;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
-		urlCreateCategorie = getInitParameter("urlCreateCategorie");
+		urlCreateMatiere = getInitParameter("urlCreateMatiere");
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		try {
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		req.setAttribute("matieres", matieres);
-		
-		getServletContext().getRequestDispatcher(urlCreateCategorie).forward(req, resp);
+
+		getServletContext().getRequestDispatcher(urlCreateMatiere).forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String name = req.getParameter("name");
-		String selectedMatiereId = req.getParameter("matiere");
+		String label = req.getParameter("label");
 		
-		Categorie c = new Categorie();
-		c.setName(name);
-		
-		//TODO Quand la table de la BDD a changé, faudra remettre cette ligne
-		//c.setMatiereId(selectedMatiereId);
+		Matiere m = new Matiere();
+		m.setLibelle(label);
 		
 		try {
 			Transaction t = HibernateUtil.currentSession().beginTransaction();
-			HibernateUtil.currentSession().saveOrUpdate(c);
+			HibernateUtil.currentSession().saveOrUpdate(m);
 			t.commit();
 			
 		} catch (HibernateException ignored) {}

@@ -31,13 +31,13 @@
 		
 		Réponses
 		<input name="response1" type="text"/>
-		<input name="rightResponse" value="response1" type="radio"/>
+		<input name="rightResponse" value="1" type="radio"/>
 		<input name="response2" type="text"/>
-		<input name="rightResponse" value="response2" type="radio"/>
+		<input name="rightResponse" value="2" type="radio"/>
 		<input name="response3" type="text"/>
-		<input name="rightResponse" value="response3" type="radio"/>
+		<input name="rightResponse" value="3" type="radio"/>
 		<input name="response4" type="text"/>
-		<input name="rightResponse" value="response4" type="radio"/>
+		<input name="rightResponse" value="4" type="radio"/>
 		
 		<input type="submit" value="GOGO"/>
 		

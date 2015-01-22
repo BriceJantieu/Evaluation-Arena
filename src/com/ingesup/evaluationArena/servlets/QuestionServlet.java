@@ -68,8 +68,6 @@ public class QuestionServlet extends HttpServlet {
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		System.out.println("Categorie Sélectionnée : " + selectedCategorieId);
 
 		req.setAttribute("selectedCategorieId", selectedCategorieId);
 		req.setAttribute("categories", categories);

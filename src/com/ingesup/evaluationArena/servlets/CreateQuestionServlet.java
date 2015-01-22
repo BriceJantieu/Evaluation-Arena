@@ -1,6 +1,7 @@
 package com.ingesup.evaluationArena.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,13 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
+import com.ingesup.evaluationArena.hibernate.beans.Question;
+import com.ingesup.evaluationArena.hibernate.beans.Reponse;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 public class CreateQuestionServlet extends HttpServlet {
 
 	private String urlCreateQuestion;
+	
+	private List<Categorie> categories;
 	
 	@Override
 	public void init() throws ServletException {
@@ -29,14 +35,13 @@ public class CreateQuestionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<Categorie> categorie = null;
 		try {
-			categorie = HibernateUtil.currentSession().find("from Categorie");
+			categories = HibernateUtil.currentSession().find("from Categorie");
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
 		
-		request.setAttribute("categories", categorie);
+		request.setAttribute("categories", categories);
 		
 		getServletContext().getRequestDispatcher(urlCreateQuestion).forward(request, response);
 		
@@ -49,12 +54,47 @@ public class CreateQuestionServlet extends HttpServlet {
 		String questionContent = req.getParameter("question");
 		String categorieId = req.getParameter("categorie");
 		String rightResponse = req.getParameter("rightResponse");
-		String response1Content = req.getParameter("response1");
-		String response2Content = req.getParameter("response2");
-		String response3Content = req.getParameter("response3");
-		String response4Content = req.getParameter("response4");
 		
-		System.out.println("Question créée.");
+		List<String> stringResponses = new ArrayList<String>();
+		stringResponses.add(req.getParameter("response1"));
+		stringResponses.add(req.getParameter("response2"));
+		stringResponses.add(req.getParameter("response3"));
+		stringResponses.add(req.getParameter("response4"));
 		
+		List<Reponse> responses = new ArrayList<Reponse>();
+		
+
+		for(int i = 0; i < responses.size(); i++){
+			Reponse r = generateReponse(stringResponses.get(i), String.valueOf(i).equals(rightResponse));
+			responses.add(r);
+			
+			try {
+				Transaction t = HibernateUtil.currentSession().beginTransaction();
+				HibernateUtil.currentSession().saveOrUpdate(r);
+				t.commit();
+			} catch (HibernateException e) {
+			}
+		}
+		
+		Categorie categorie = null;
+		for(Categorie c : categories){
+			if(c.getId().toString().equals(categorieId))
+				categorie = c;
+		}
+		
+		Question q = new Question();
+		q.setContent(questionContent);
+		if(categorie != null)
+			q.setCategorie(categorie);
+		q.setCreateDate(Calendar.getInstance().getTime());
+		
+	}
+	
+	private Reponse generateReponse(String content, boolean isValid){
+		Reponse r = new Reponse();
+		r.setContent(content);
+		r.setIsValid(isValid);
+		
+		return r;
 	}
 }
