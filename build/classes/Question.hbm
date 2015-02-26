@@ -38,9 +38,9 @@
 			<key column="Question_ID" />
 			<one-to-many class="UtilisateurQuestionReponse" />
 		</set>
-		<set inverse="true" name="QuestionReponseSet">
+		<set inverse="true" name="ReponseSet">
 			<key column="Question_ID" />
-			<one-to-many class="QuestionReponse" />
+			<one-to-many class="Reponse" />
 		</set>
 		<set inverse="true" name="ExamenQuestionSet">
 			<key column="Question_ID" />

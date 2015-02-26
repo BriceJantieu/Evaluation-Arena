@@ -23,5 +23,9 @@
 			<key column="Matiere_ID" />
 			<one-to-many class="Examen" />
 		</set>
+		<set inverse="true" name="CategorieSet">
+			<key column="Matiere_ID" />
+			<one-to-many class="Categorie" />
+		</set>
 	</class>
 </hibernate-mapping>

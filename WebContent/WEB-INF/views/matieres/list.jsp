@@ -8,31 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="matieres.html" method="get">
-		<select name="matiere"
-			onchange="submit()">
-			<option id="0" value="0">Matieres</option>
-			<c:forEach var="matiere" items="${matieres}">
-				<c:if test="${matiere.id == selectedMatiereId}">
-					<option selected="selected" value="${matiere.id}">${matiere.libelle}</option>
-				</c:if>
-				
-				<c:if test="${matiere.id != selectedMatiereId}">
-					<option value="${matiere.id}">${matiere.libelle}</option>
-				</c:if>
-			</c:forEach>
-		</select>
-	</form>
-	
-	Catégories
+	Matières
 	<table class="table table-strip">
 		<tr>
 			<td><strong>Nom</strong></td>
 		</tr>
 		
-		<c:forEach var="category" items="${categories}" >
+		<c:forEach var="matiere" items="${matieres}" >
 			<tr>
-				<td> ${category.name} </td>
+				<td> ${matiere.libelle} </td>
 			</tr>
 		</c:forEach>
 	</table>

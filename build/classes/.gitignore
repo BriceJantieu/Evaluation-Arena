@@ -1,32 +1,17 @@
-/com
-<<<<<<< HEAD
 /Categorie.hbm
 /Examen.hbm
+/ExamenPromo.hbm
 /ExamenQuestion.hbm
+/ExmanenUtilisateur.hbm
+/HibernateUtil.class
 /Matiere.hbm
 /Promo.hbm
-/PromoSession.hbm
-/PromoUtilisateur.hbm
-/PromoUtilisateurState.hbm
 /Question.hbm
-/QuestionDifficulty.hbm
-/QuestionMatiere.hbm
 /QuestionReponse.hbm
 /Reponse.hbm
 /Role.hbm
-/Session.hbm
-/SessionState.hbm
 /Utilisateur.hbm
-/UtilisateurRole.hbm
-/UtilisateurSession.hbm
-/UtilisateurSessionReponse.hbm
-<<<<<<< HEAD
-/hibernate.cfg.xml
-/ExamenPromo.hbm
-/ExmanenUtilisateur.hbm
 /UtilisateurQuestionReponse.hbm
-=======
->>>>>>> e543bd804325543de5e38ed7186a005f88c12f3c
-/create
-=======
->>>>>>> 67d811aa79f966887f70ebf73cdbadf65a218fe7
+/com
+/hibernate.cfg.xml
+/testUser.class

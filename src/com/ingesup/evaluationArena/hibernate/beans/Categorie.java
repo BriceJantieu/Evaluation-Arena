@@ -25,12 +25,13 @@ public class Categorie extends BaseCategorie {
 	 */
 	public Categorie (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
 		java.lang.String _name) {
 
 		super (
 			_id,
+			_matiere,
 			_name);
 	}
-
 /*[CONSTRUCTOR MARKER END]*/
 }

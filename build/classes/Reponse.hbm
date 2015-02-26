@@ -33,10 +33,13 @@
 			type="string"
 		 />
 
-		<set inverse="true" name="QuestionReponseSet">
-			<key column="Reponse_ID" />
-			<one-to-many class="QuestionReponse" />
-		</set>
+		<many-to-one
+			class="Question"
+			name="Question"
+			not-null="true"
+		>
+			<column name="Question_ID" />
+		</many-to-one>
 		<set inverse="true" name="UtilisateurQuestionReponseSet">
 			<key column="Reponse_ID" />
 			<one-to-many class="UtilisateurQuestionReponse" />

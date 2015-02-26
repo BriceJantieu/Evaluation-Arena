@@ -12,8 +12,8 @@
 		<property name="hibernate.connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
-		<property name="hibernate.connection.username">EvaluationArena</property>
-		<property name="hibernate.connection.password">EvaluationArena</property>
+		<property name="hibernate.connection.username">Eliott</property>
+		<property name="hibernate.connection.password">azerty</property>
 		<!-- property name="hibernate.connection.pool_size"></property -->
 		<!-- dialect for MySQL -->
 		<property name="dialect">
@@ -24,18 +24,20 @@
 		<property name="hibernate.transaction.factory_class">
 			net.sf.hibernate.transaction.JDBCTransactionFactory
 		</property>
-		<mapping resource="Categorie.hbm" />
-		<mapping resource="Examen.hbm" />
+		<property name="jta.UserTransaction">
+			java:comp/UserTransaction
+		</property>
 		<mapping resource="ExamenPromo.hbm" />
-		<mapping resource="ExamenQuestion.hbm" />
-		<mapping resource="ExmanenUtilisateur.hbm" />
-		<mapping resource="Matiere.hbm" />
-		<mapping resource="Promo.hbm" />
-		<mapping resource="Question.hbm" />
-		<mapping resource="QuestionReponse.hbm" />
-		<mapping resource="Reponse.hbm" />
-		<mapping resource="Role.hbm" />
 		<mapping resource="Utilisateur.hbm" />
+		<mapping resource="ExmanenUtilisateur.hbm" />
 		<mapping resource="UtilisateurQuestionReponse.hbm" />
+		<mapping resource="Question.hbm" />
+		<mapping resource="Role.hbm" />
+		<mapping resource="Matiere.hbm" />
+		<mapping resource="Categorie.hbm" />
+		<mapping resource="ExamenQuestion.hbm" />
+		<mapping resource="Reponse.hbm" />
+		<mapping resource="Examen.hbm" />
+		<mapping resource="Promo.hbm" />
 	</session-factory>
 </hibernate-configuration>

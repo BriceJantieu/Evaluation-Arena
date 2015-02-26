@@ -19,6 +19,7 @@ public abstract class BaseReponse  implements Serializable {
 
 	public static String PROP_NAME = "Name";
 	public static String PROP_IS_VALID = "IsValid";
+	public static String PROP_QUESTION = "Question";
 	public static String PROP_ID = "Id";
 	public static String PROP_CONTENT = "Content";
 
@@ -33,8 +34,10 @@ public abstract class BaseReponse  implements Serializable {
 	private boolean _isValid;
 	private java.lang.String _content;
 
+	// many to one
+	private com.ingesup.evaluationArena.hibernate.beans.Question _question;
+
 	// collections
-	private java.util.Set _questionReponseSet;
 	private java.util.Set _utilisateurQuestionReponseSet;
 
 
@@ -56,11 +59,13 @@ public abstract class BaseReponse  implements Serializable {
 	 */
 	public BaseReponse (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Question _question,
 		java.lang.String _name,
 		boolean _isValid,
 		java.lang.String _content) {
 
 		this.setId(_id);
+		this.setQuestion(_question);
 		this.setName(_name);
 		this.setIsValid(_isValid);
 		this.setContent(_content);
@@ -140,25 +145,21 @@ public abstract class BaseReponse  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: QuestionReponseSet
+     * @hibernate.property
+     *  column=Question_ID
+	 * not-null=true
 	 */
-	public java.util.Set getQuestionReponseSet () {
-		return this._questionReponseSet;
+	public com.ingesup.evaluationArena.hibernate.beans.Question getQuestion () {
+		return this._question;
 	}
 
 	/**
-	 * Set the value related to the column: QuestionReponseSet
-	 * @param _questionReponseSet the QuestionReponseSet value
+	 * Set the value related to the column: Question_ID
+	 * @param _question the Question_ID value
 	 */
-	public void setQuestionReponseSet (java.util.Set _questionReponseSet) {
-		this._questionReponseSet = _questionReponseSet;
+	public void setQuestion (com.ingesup.evaluationArena.hibernate.beans.Question _question) {
+		this._question = _question;
 	}
-	
-	public void addToQuestionReponseSet (Object obj) {
-		if (null == this._questionReponseSet) this._questionReponseSet = new java.util.HashSet();
-		this._questionReponseSet.add(obj);
-	}
-
 
 
 	/**

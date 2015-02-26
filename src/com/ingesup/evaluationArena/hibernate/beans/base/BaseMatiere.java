@@ -31,6 +31,7 @@ public abstract class BaseMatiere  implements Serializable {
 
 	// collections
 	private java.util.Set _examenSet;
+	private java.util.Set _categorieSet;
 
 
 	// constructors
@@ -116,6 +117,28 @@ public abstract class BaseMatiere  implements Serializable {
 	public void addToExamenSet (Object obj) {
 		if (null == this._examenSet) this._examenSet = new java.util.HashSet();
 		this._examenSet.add(obj);
+	}
+
+
+
+	/**
+	 * Return the value associated with the column: CategorieSet
+	 */
+	public java.util.Set getCategorieSet () {
+		return this._categorieSet;
+	}
+
+	/**
+	 * Set the value related to the column: CategorieSet
+	 * @param _categorieSet the CategorieSet value
+	 */
+	public void setCategorieSet (java.util.Set _categorieSet) {
+		this._categorieSet = _categorieSet;
+	}
+	
+	public void addToCategorieSet (Object obj) {
+		if (null == this._categorieSet) this._categorieSet = new java.util.HashSet();
+		this._categorieSet.add(obj);
 	}
 
 

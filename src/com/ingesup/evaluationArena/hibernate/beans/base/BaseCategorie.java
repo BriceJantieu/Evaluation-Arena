@@ -18,6 +18,7 @@ import java.io.Serializable;
 public abstract class BaseCategorie  implements Serializable {
 
 	public static String PROP_NAME = "Name";
+	public static String PROP_MATIERE = "Matiere";
 	public static String PROP_ID = "Id";
 
 
@@ -28,6 +29,9 @@ public abstract class BaseCategorie  implements Serializable {
 
 	// fields
 	private java.lang.String _name;
+
+	// many to one
+	private com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere;
 
 	// collections
 	private java.util.Set _questionSet;
@@ -51,9 +55,11 @@ public abstract class BaseCategorie  implements Serializable {
 	 */
 	public BaseCategorie (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
 		java.lang.String _name) {
 
 		this.setId(_id);
+		this.setMatiere(_matiere);
 		this.setName(_name);
 		initialize();
 	}
@@ -95,6 +101,24 @@ public abstract class BaseCategorie  implements Serializable {
 	 */
 	public void setName (java.lang.String _name) {
 		this._name = _name;
+	}
+
+
+	/**
+     * @hibernate.property
+     *  column=Matiere_ID
+	 * not-null=true
+	 */
+	public com.ingesup.evaluationArena.hibernate.beans.Matiere getMatiere () {
+		return this._matiere;
+	}
+
+	/**
+	 * Set the value related to the column: Matiere_ID
+	 * @param _matiere the Matiere_ID value
+	 */
+	public void setMatiere (com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere) {
+		this._matiere = _matiere;
 	}
 
 

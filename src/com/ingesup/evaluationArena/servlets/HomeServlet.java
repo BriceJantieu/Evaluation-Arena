@@ -1,11 +1,17 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import net.sf.hibernate.HibernateException;
+
+import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
+import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 public class HomeServlet extends HttpServlet {
 	
@@ -17,18 +23,44 @@ public class HomeServlet extends HttpServlet {
 		
 		urlHome = getInitParameter("urlHome");
 	}
-	
+
 	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		// redirection vers la vue associée à l'action
-		//getServletContext().getRequestDispatcher(urlHome).forward(request, response);
 		//response.sendRedirect("/EvaluationArena/questions/create");
 		//response.sendRedirect("/EvaluationArena/questions.html");
 		//response.sendRedirect("/EvaluationArena/examens/create");
 		//response.sendRedirect("/EvaluationArena/categories/create");
 		//response.sendRedirect("/EvaluationArena/matieres/create");
 		//response.sendRedirect("/EvaluationArena/promos/create");
-		response.sendRedirect("/EvaluationArena/promos.html");
+		//resp.sendRedirect("/EvaluationArena/promos.html");
+		
+
+		getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String username = req.getParameter("username");
+		String password = req.getParameter("password");
+		
+		List<Utilisateur> users = null;
+		
+		try {
+			users = HibernateUtil.currentSession().find("from Utilisateur where Password LIKE '" + password + "' and Username LIKE '" + username + "'");
+		} catch (HibernateException e) {
+			String a = e.getMessage();
+		}
+		
+		if(users != null && users.size() > 0)
+			resp.sendRedirect("/EvaluationArena/promos.html");
+		else
+			getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
+			
+	}
+	
+	
 }

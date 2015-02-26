@@ -28,8 +28,8 @@ public abstract class BaseExamenPromo  implements Serializable {
 	private java.lang.Integer _id;
 
 	// many to one
-	private com.ingesup.evaluationArena.hibernate.beans.Examen _examen;
 	private com.ingesup.evaluationArena.hibernate.beans.Promo _promo;
+	private com.ingesup.evaluationArena.hibernate.beans.Examen _examen;
 
 
 	// constructors
@@ -50,12 +50,12 @@ public abstract class BaseExamenPromo  implements Serializable {
 	 */
 	public BaseExamenPromo (
 		java.lang.Integer _id,
-		com.ingesup.evaluationArena.hibernate.beans.Examen _examen,
-		com.ingesup.evaluationArena.hibernate.beans.Promo _promo) {
+		com.ingesup.evaluationArena.hibernate.beans.Promo _promo,
+		com.ingesup.evaluationArena.hibernate.beans.Examen _examen) {
 
 		this.setId(_id);
-		this.setExamen(_examen);
 		this.setPromo(_promo);
+		this.setExamen(_examen);
 		initialize();
 	}
 
@@ -85,24 +85,6 @@ public abstract class BaseExamenPromo  implements Serializable {
 
 	/**
      * @hibernate.property
-     *  column=Examen_ID
-	 * not-null=true
-	 */
-	public com.ingesup.evaluationArena.hibernate.beans.Examen getExamen () {
-		return this._examen;
-	}
-
-	/**
-	 * Set the value related to the column: Examen_ID
-	 * @param _examen the Examen_ID value
-	 */
-	public void setExamen (com.ingesup.evaluationArena.hibernate.beans.Examen _examen) {
-		this._examen = _examen;
-	}
-
-
-	/**
-     * @hibernate.property
      *  column=Promo_ID
 	 * not-null=true
 	 */
@@ -116,6 +98,24 @@ public abstract class BaseExamenPromo  implements Serializable {
 	 */
 	public void setPromo (com.ingesup.evaluationArena.hibernate.beans.Promo _promo) {
 		this._promo = _promo;
+	}
+
+
+	/**
+     * @hibernate.property
+     *  column=Examen_ID
+	 * not-null=true
+	 */
+	public com.ingesup.evaluationArena.hibernate.beans.Examen getExamen () {
+		return this._examen;
+	}
+
+	/**
+	 * Set the value related to the column: Examen_ID
+	 * @param _examen the Examen_ID value
+	 */
+	public void setExamen (com.ingesup.evaluationArena.hibernate.beans.Examen _examen) {
+		this._examen = _examen;
 	}
 
 

@@ -29,7 +29,7 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 		initParams = { 
 				@WebInitParam(name = "urlCreateUtilisateur", value = "/WEB-INF/views/utilisateurs/create.jsp", description = "Path du fichier jsp de la vue")
 		})
-public class CreateUtilisateur extends HttpServlet {
+public class CreateUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -37,7 +37,7 @@ private String urlCreateUtilisateur;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateUtilisateur() {
+    public CreateUtilisateurServlet() {
         super();
         urlCreateUtilisateur = "/WEB-INF/views/utilisateurs/create.jsp";//getInitParameter("urlCreateUtilisateur").toString();
     }

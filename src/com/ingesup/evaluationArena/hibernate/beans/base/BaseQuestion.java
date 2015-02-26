@@ -37,7 +37,7 @@ public abstract class BaseQuestion  implements Serializable {
 
 	// collections
 	private java.util.Set _utilisateurQuestionReponseSet;
-	private java.util.Set _questionReponseSet;
+	private java.util.Set _reponseSet;
 	private java.util.Set _examenQuestionSet;
 
 
@@ -165,23 +165,23 @@ public abstract class BaseQuestion  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: QuestionReponseSet
+	 * Return the value associated with the column: ReponseSet
 	 */
-	public java.util.Set getQuestionReponseSet () {
-		return this._questionReponseSet;
+	public java.util.Set getReponseSet () {
+		return this._reponseSet;
 	}
 
 	/**
-	 * Set the value related to the column: QuestionReponseSet
-	 * @param _questionReponseSet the QuestionReponseSet value
+	 * Set the value related to the column: ReponseSet
+	 * @param _reponseSet the ReponseSet value
 	 */
-	public void setQuestionReponseSet (java.util.Set _questionReponseSet) {
-		this._questionReponseSet = _questionReponseSet;
+	public void setReponseSet (java.util.Set _reponseSet) {
+		this._reponseSet = _reponseSet;
 	}
 	
-	public void addToQuestionReponseSet (Object obj) {
-		if (null == this._questionReponseSet) this._questionReponseSet = new java.util.HashSet();
-		this._questionReponseSet.add(obj);
+	public void addToReponseSet (Object obj) {
+		if (null == this._reponseSet) this._reponseSet = new java.util.HashSet();
+		this._reponseSet.add(obj);
 	}
 
 

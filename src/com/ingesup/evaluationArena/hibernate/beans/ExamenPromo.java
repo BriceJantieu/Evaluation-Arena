@@ -25,14 +25,13 @@ public class ExamenPromo extends BaseExamenPromo {
 	 */
 	public ExamenPromo (
 		java.lang.Integer _id,
-		com.ingesup.evaluationArena.hibernate.beans.Examen _examen,
-		com.ingesup.evaluationArena.hibernate.beans.Promo _promo) {
+		com.ingesup.evaluationArena.hibernate.beans.Promo _promo,
+		com.ingesup.evaluationArena.hibernate.beans.Examen _examen) {
 
 		super (
 			_id,
-			_examen,
-			_promo);
+			_promo,
+			_examen);
 	}
-
 /*[CONSTRUCTOR MARKER END]*/
 }

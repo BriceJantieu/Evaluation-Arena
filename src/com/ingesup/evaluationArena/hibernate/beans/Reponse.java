@@ -25,16 +25,17 @@ public class Reponse extends BaseReponse {
 	 */
 	public Reponse (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Question _question,
 		java.lang.String _name,
 		boolean _isValid,
 		java.lang.String _content) {
 
 		super (
 			_id,
+			_question,
 			_name,
 			_isValid,
 			_content);
 	}
-
 /*[CONSTRUCTOR MARKER END]*/
 }

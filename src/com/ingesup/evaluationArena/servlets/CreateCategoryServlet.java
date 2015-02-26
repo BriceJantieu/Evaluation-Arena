@@ -50,11 +50,12 @@ public class CreateCategoryServlet extends HttpServlet {
 		String name = req.getParameter("name");
 		String selectedMatiereId = req.getParameter("matiere");
 		
+		Matiere m = new Matiere();
+		m.setId(Integer.valueOf(selectedMatiereId));
+		
 		Categorie c = new Categorie();
 		c.setName(name);
-		
-		//TODO Quand la table de la BDD a changé, faudra remettre cette ligne
-		//c.setMatiereId(selectedMatiereId);
+		c.setMatiere(m);
 		
 		try {
 			Transaction t = HibernateUtil.currentSession().beginTransaction();

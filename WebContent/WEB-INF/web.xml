@@ -35,18 +35,16 @@
   </servlet-mapping>
 
   <servlet-mapping>
+    <servlet-name>CategoryServlet</servlet-name>
+    <url-pattern>/categories.html</url-pattern>
+    <url-pattern>/categories</url-pattern>
+  </servlet-mapping>
+
+    
+  
+  <servlet-mapping>
     <servlet-name>CreateQuestionServlet</servlet-name>
     <url-pattern>/questions/create</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>CreateExamenServlet</servlet-name>
-  	<url-pattern>/examens/create</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-  	<servlet-name>CreateCategoryServlet</servlet-name>
-  	<url-pattern>/categories/create</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -54,7 +52,7 @@
   	<url-pattern>/matieres/create</url-pattern>
   </servlet-mapping>
   
-    <servlet-mapping>
+  <servlet-mapping>
   	<servlet-name>CreatePromoServlet</servlet-name>
   	<url-pattern>/promos/create</url-pattern>
   </servlet-mapping>
@@ -102,6 +100,16 @@
     <init-param>
       <param-name>urlMatieres</param-name>
       <param-value>/WEB-INF/views/matieres/list.jsp</param-value>
+    </init-param>
+  </servlet>
+  
+  
+  <servlet>
+    <servlet-name>CategoryServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.CategoryServlet</servlet-class>
+    <init-param>
+      <param-name>urlCategories</param-name>
+      <param-value>/WEB-INF/views/categories/list.jsp</param-value>
     </init-param>
   </servlet>
   
