@@ -8,15 +8,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="create" method="post">
+	<form action="create" method="get">
+		Matière
+		<select name="matiere"
+			onchange="submit()">
+			<option selected value="0">Matière</option>
+			<c:forEach var="matiere" items="${matieres}">
+				<c:if test="${matiere.id == selectedMatiereId}">
+					<option selected="selected" value="${matiere.id}">${matiere.libelle}</option>
+				</c:if>
+				
+				<c:if test="${matiere.id != selectedMatiereId}">
+					<option value="${matiere.id}">${matiere.libelle}</option>
+				</c:if>
+			</c:forEach>
+		</select>
+	</form>
+
+	<form action="create" method="post">
 		Nom de l'examen
 		<input name="name" type="text"/>
 		
-		Matière
-		<select name="matiere">
-			<option selected value="0">Matière</option>
-			<c:forEach var="matiere" items="${matieres}">
-				<option value="${matiere.id}">${matiere.libelle}</option>
+		<br/>
+		Questions
+		<select multiple name="questions">
+			<c:forEach var="question" items="${questions}">
+				<option value="${question.id}">${question.content}</option>
+			</c:forEach>
+		</select>
+		
+		<br/>
+		Promos
+		<select multiple name="promos">
+			<c:forEach var="promo" items="${promos}">
+				<option value="${promo.id}">${promo.libelle}</option>
 			</c:forEach>
 		</select>
 		

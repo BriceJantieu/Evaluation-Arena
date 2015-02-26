@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="categories.html" method="get">
+	<form action="categories.html" method="get">
 		<select name="matiere"
 			onchange="submit()">
 			<option id="0" value="0">Matieres</option>
