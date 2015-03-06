@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../Menu/menu.jsp" %>
 	<form action="create" method="post">
 		Nom de la catégorie
 		<input name="name" type="text"/>

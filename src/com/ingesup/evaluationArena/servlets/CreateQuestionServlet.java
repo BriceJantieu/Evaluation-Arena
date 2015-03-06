@@ -16,9 +16,11 @@ import net.sf.hibernate.Transaction;
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Question;
 import com.ingesup.evaluationArena.hibernate.beans.Reponse;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateQuestionServlet extends HttpServlet {
+public class CreateQuestionServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateQuestion;
 	
@@ -31,21 +33,6 @@ public class CreateQuestionServlet extends HttpServlet {
 		urlCreateQuestion = getInitParameter("urlCreateQuestion");
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		try {
-			categories = HibernateUtil.currentSession().find("from Categorie");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		request.setAttribute("categories", categories);
-		
-		getServletContext().getRequestDispatcher(urlCreateQuestion).forward(request, response);
-		
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -96,5 +83,27 @@ public class CreateQuestionServlet extends HttpServlet {
 		r.setIsValid(isValid);
 		
 		return r;
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			categories = HibernateUtil.currentSession().find("from Categorie");
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		req.setAttribute("categories", categories);
+		
+		getServletContext().getRequestDispatcher(urlCreateQuestion).forward(req, resp);
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}
 }

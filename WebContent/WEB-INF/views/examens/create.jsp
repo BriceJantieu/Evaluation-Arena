@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="create" method="post">
+	<%@ include file="../Menu/menu.jsp" %>
+	<form action="create" method="post">
 		Nom de l'examen
 		<input name="name" type="text"/>
 		

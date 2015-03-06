@@ -14,9 +14,11 @@ import net.sf.hibernate.HibernateException;
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
 import com.ingesup.evaluationArena.hibernate.beans.Question;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class QuestionServlet extends HttpServlet {
+public class QuestionServlet extends AuthentificateHttpServlet {
 
 	private String urlQuestions;
 	
@@ -28,12 +30,19 @@ public class QuestionServlet extends HttpServlet {
 		
 		urlQuestions = getInitParameter("urlQuestions");
 	}
-	
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPost(req, resp);
+	}
+
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String selectedCategorieId = req.getParameter("categorie");
 		String selectedMatiereId = req.getParameter("matiere");
 		
@@ -76,11 +85,12 @@ public class QuestionServlet extends HttpServlet {
 		getServletContext().getRequestDispatcher(urlQuestions).forward(req, resp);
 	}
 
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}
 	
 

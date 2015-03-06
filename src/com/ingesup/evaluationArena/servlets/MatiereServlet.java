@@ -14,9 +14,11 @@ import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
 import com.ingesup.evaluationArena.hibernate.beans.Promo;
 import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class MatiereServlet extends HttpServlet {
+public class MatiereServlet extends AuthentificateHttpServlet {
 
 	private String urlMatieres;
 	
@@ -27,11 +29,12 @@ public class MatiereServlet extends HttpServlet {
 		urlMatieres = getInitParameter("urlMatieres");
 	}
 	
-	
+
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		List<Matiere> matieres = null;
 		
 		try {
@@ -43,7 +46,14 @@ public class MatiereServlet extends HttpServlet {
 		req.setAttribute("matieres", matieres);
 		
 		getServletContext().getRequestDispatcher(urlMatieres).forward(req, resp);
+	}
+
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
-	}	
+	}
 
 }

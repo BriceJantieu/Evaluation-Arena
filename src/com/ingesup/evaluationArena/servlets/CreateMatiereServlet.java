@@ -12,9 +12,11 @@ import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateMatiereServlet extends HttpServlet {
+public class CreateMatiereServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateMatiere;
 	
@@ -25,12 +27,6 @@ public class CreateMatiereServlet extends HttpServlet {
 		urlCreateMatiere = getInitParameter("urlCreateMatiere");
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		getServletContext().getRequestDispatcher(urlCreateMatiere).forward(req, resp);
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -47,6 +43,20 @@ public class CreateMatiereServlet extends HttpServlet {
 			t.commit();
 			
 		} catch (HibernateException ignored) {}
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		getServletContext().getRequestDispatcher(urlCreateMatiere).forward(req, resp);
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}	
 
 }

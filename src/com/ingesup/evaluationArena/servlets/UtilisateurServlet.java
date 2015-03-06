@@ -16,6 +16,8 @@ import net.sf.hibernate.HibernateException;
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Role;
 import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 /**
@@ -26,7 +28,7 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 		initParams = { 
 				@WebInitParam(name = "urlUtilisateur", value = "/WEB-INF/views/utilisateurs/list.jsp", description = "Path de la view Utilisateurs(Liste)")
 		})
-public class UtilisateurServlet extends HttpServlet {
+public class UtilisateurServlet extends AuthentificateHttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	
@@ -43,13 +45,20 @@ public class UtilisateurServlet extends HttpServlet {
         urlUtilisateur = "/WEB-INF/views/utilisateurs/list.jsp";//getInitParameter("urlUtilisateur");
     }
 
+	
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@SuppressWarnings("unchecked")
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
 		if(RoleList == null)
 			try {
 				RoleList = HibernateUtil.currentSession().find("from Role");
@@ -58,7 +67,7 @@ public class UtilisateurServlet extends HttpServlet {
 				e1.printStackTrace();
 			}
 		
-		String FilterRoleId = request.getParameter("filter_role");
+		String FilterRoleId = req.getParameter("filter_role");
 		String sqlRequest = "from Utilisateur";
 		List<Utilisateur> users = null;
 		
@@ -79,20 +88,20 @@ public class UtilisateurServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("roleList", RoleList );
+		req.setAttribute("roleList", RoleList );
 		if(FilterRoleId == null || FilterRoleId.isEmpty())
 			FilterRoleId = "0";
-		request.setAttribute("selectedRoleId", FilterRoleId);
-		request.setAttribute("utilisateurs", users);
+		req.setAttribute("selectedRoleId", FilterRoleId);
+		req.setAttribute("utilisateurs", users);
 		
-		getServletContext().getRequestDispatcher(urlUtilisateur).forward(request, response);
+		getServletContext().getRequestDispatcher(urlUtilisateur).forward(req, resp);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}
 
 }

@@ -12,9 +12,11 @@ import net.sf.hibernate.HibernateException;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateExamenServlet extends HttpServlet {
+public class CreateExamenServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateExamen;
 	
@@ -26,10 +28,21 @@ public class CreateExamenServlet extends HttpServlet {
 		urlCreateExamen = getInitParameter("urlCreateExamen");
 	}
 	
+
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		String name = req.getParameter("name");
+		String matiereId = req.getParameter("matiere");
+		
+		System.out.println("Id matière : " + matiereId);
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		List<Matiere> matieres = null;
 		try {
 			matieres = HibernateUtil.currentSession().find("from Matiere");
@@ -43,14 +56,11 @@ public class CreateExamenServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		String name = req.getParameter("name");
-		String matiereId = req.getParameter("matiere");
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
-		System.out.println("Id matière : " + matiereId);
-	}
+	}	
 	
 
 }
