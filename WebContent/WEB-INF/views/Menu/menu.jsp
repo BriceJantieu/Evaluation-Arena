@@ -15,17 +15,8 @@
    <li><a href='/EvaluationArena/categories'>Category</a></li>
    <li><a href='/EvaluationArena/matieres'>Matter</a></li>
    <li><a href='/EvaluationArena/promos'>Promo</a></li>
-   <li><a>Question</a>
-   		<ul>
-   			<li><a href='/EvaluationArena/questions'>List</a></li>
-   			<li><a href='/EvaluationArena/questions/create'>Create</a></li>
-   		</ul>
-   </li>
-   <li><a>Users</a>
-   		<ul>
-   			<li><a href='/EvaluationArena/users'>List</a></li>
-   			<li><a href='/EvaluationArena/users/create'>Create</a></li>
-   		</ul>
-   </li>
+   <li><a href='/EvaluationArena/questions'>Question</a></li>
+   <li><a href='/EvaluationArena/users'>Users</a></li>
+   
 </ul>
 </div>

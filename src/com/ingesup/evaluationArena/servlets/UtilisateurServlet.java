@@ -1,7 +1,10 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Role;
@@ -36,6 +40,8 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 	
 	private Role selectedRoleFilter;
 	private List<Role> RoleList = null;
+	private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -52,6 +58,49 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String username = request.getParameter("username");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String birthdate = request.getParameter("birthdate");
+		String groupe = request.getParameter("groupe");
+		
+		Utilisateur newUser = new Utilisateur();
+		
+		newUser.setUsername(username);
+		newUser.setEmail(email);
+		newUser.setPassword(password);
+		newUser.setFirstName(firstname);
+		newUser.setLastName(lastname);
+		newUser.setCreationDate(Calendar.getInstance().getTime());
+		if(birthdate != null && !birthdate.isEmpty())
+			try {
+				newUser.setBirthDate(formater.parse(birthdate));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		//newUser.setRole();
+		if(RoleList != null)
+		{
+			for (Role r : RoleList) {
+				if(r.getId().toString().equals(groupe))
+					newUser.setRole(r);
+			}
+		}
+		
+		Transaction t = null;
+		try {
+			t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(newUser);
+			t.commit();
+
+			response.sendRedirect("/EvaluationArena/users");
+			
+		} catch (HibernateException ignored) {
+
+			response.sendRedirect("/EvaluationArena/users");
+		}
 	}
 
 	@Override

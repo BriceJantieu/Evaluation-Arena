@@ -7,6 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<title>List of questions</title>
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  		<script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body>
@@ -17,7 +18,7 @@
 				<form style="margin-bottom : 20px;" class="form-inline pull-right" action="questions.html" method="get">
 					<div class="form-group">
 						<label>Select category : </label>
-						<select name="categorie" onchange="submit()">
+						<select class="form-control" name="categorie" onchange="submit()">
 							<option id="0" value="0">all categories</option>
 							<c:forEach var="categorie" items="${categories}">
 								<c:if test="${categorie.id == selectedCategorieId}">
@@ -35,15 +36,15 @@
 				<form style="margin-bottom : 20px; margin-right : 50px;" class="form-inline pull-right" action="questions.html" method="get">
 					<div class="form-group">
 						<label>Select matter : </label>
-							<select name="matiere" onchange="submit()">
+							<select class="form-control" name="matiere" onchange="submit()">
 								<option id="0" value="0">All matter</option>
 								<c:forEach var="matiere" items="${matieres}">
 									<c:if test="${matiere.id == selectedMatiereId}">
-										<option selected="selected" value="${matiere.id}">${matiere.name}</option>
+										<option selected="selected" value="${matiere.id}">${matiere.libelle}</option>
 									</c:if>
 				
 									<c:if test="${matiere.id != selectedMatiereId}">
-										<option value="${matiere.id}">${matiere.name}</option>
+										<option value="${matiere.id}">${matiere.libelle}</option>
 									</c:if>
 								</c:forEach>
 							</select>
@@ -69,6 +70,71 @@
 			</tr>
 		</c:forEach>
 	</table>	
-		</div>
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  	Create
+	</button>
+
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        			<h4 class="modal-title" id="myModalLabel">Create question</h4>
+      			</div>
+      			<form action="questions.html" method="post">
+      				<div class="modal-body">
+      					<label>Libellé de la question : </label>
+							
+							<input class="form-control" style="margin-bottom : 20px;" name="question" type="text"/>
+		
+							<select style="margin-bottom : 20px;" class="form-control" name="matiere">
+								<option selected value="0">Matière</option>
+								<c:forEach var="matiere" items="${matieres}">
+									<option value="${matiere.id}">${matiere.libelle}</option>
+								</c:forEach>
+							</select>
+							<select style="margin-bottom : 20px;" class="form-control" name="categorie">
+								<option selected value="0">Catégorie</option>
+								<c:forEach var="categorie" items="${categories}">
+									<option value="${categorie.id}">${categorie.name}</option>
+								</c:forEach>
+							</select>
+		
+							<label style="margin-bottom : 10px;">Réponses :</label>
+   					 		<div style="margin-bottom : 5px;" class="input-group">
+      							<span class="input-group-addon">
+        							<input name="rightResponse" type="radio" placeholder="réponse 1" aria-label="reponse 1">
+      							</span>
+      							<input name="response1" type="text" class="form-control" aria-label="...">
+    						</div>
+    						<div style="margin-bottom : 5px;" class="input-group">
+   								<span class="input-group-addon">
+        							<input name="rightResponse" type="radio" aria-label="...">
+      							</span>
+      							<input name="response2" type="text" class="form-control" aria-label="...">
+    						</div>
+    						<div style="margin-bottom : 5px;" class="input-group">
+      							<span class="input-group-addon">
+        							<input name="rightResponse" type="radio" aria-label="...">
+      							</span>
+      							<input name="response3" type="text" class="form-control" aria-label="...">
+    						</div>
+    						<div style="margin-bottom : 5px;" class="input-group">
+      							<span class="input-group-addon">
+       								<input name="rightResponse" type="radio" aria-label="...">
+      							</span>
+    							<input name="response4" type="text" class="form-control" aria-label="...">
+    						</div>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        				<button type="submit" class="btn btn-primary" >Save</button>
+      				</div>
+      			</form>
+    		</div>
+  		</div>
+	</div>
+</div>
 </body>
 </html>
