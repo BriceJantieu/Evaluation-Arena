@@ -5,30 +5,16 @@
 <div id='cssmenu'>
 <ul>
    <li><a href='#'>Home</a></li>
-   <li class='active has-sub'><a>Examen</a>
+   <li><a>Examen</a>
       <ul>
    			<li><a href='/EvaluationArena/examens'>List</a></li>
    			<li><a href='/EvaluationArena/examens/create'>Create</a></li>
    		</ul>
    </li>
-   <li><a>Categorie</a>
-   		<ul>
-   			<li><a href='/EvaluationArena/categories'>List</a></li>
-   			<li><a href='/EvaluationArena/categories/create'>Create</a></li>
-   		</ul>
-   </li>
-   <li><a>Matiere</a>
-   		<ul>
-   			<li><a href='/EvaluationArena/matieres'>List</a></li>
-   			<li><a href='/EvaluationArena/matieres/create'>Create</a></li>
-   		</ul>
-   </li>
-   <li><a>Promo</a>
-   		<ul>
-   			<li><a href='/EvaluationArena/promos'>List</a></li>
-   			<li><a href='/EvaluationArena/promos/create'>Create</a></li>
-   		</ul>
-   </li>
+   
+   <li><a href='/EvaluationArena/categories'>Category</a></li>
+   <li><a href='/EvaluationArena/matieres'>Matter</a></li>
+   <li><a href='/EvaluationArena/promos'>Promo</a></li>
    <li><a>Question</a>
    		<ul>
    			<li><a href='/EvaluationArena/questions'>List</a></li>
