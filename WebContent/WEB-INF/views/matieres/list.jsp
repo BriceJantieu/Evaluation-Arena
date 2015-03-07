@@ -39,10 +39,9 @@
       			</div>
       			<form action="matieres.html" method="post">
       				<div class="modal-body">
-      					<div class="form-group">
-    						<label>Libellé de la matière :</label>
-							<input name="label" type="text"/>
-						</div>
+    				<label>Libellé de la matière :</label>
+					<input  class="form-control" name="label" type="text"/>
+		
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

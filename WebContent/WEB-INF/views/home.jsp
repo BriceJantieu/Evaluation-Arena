@@ -10,7 +10,7 @@
 <body>
 <div class="container">
 	<div class="col-md-offset-5 col-md-3">
-      <form class="form-signin" action="" method="post">
+      <form class="form-signin" action="login.html" method="post">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">

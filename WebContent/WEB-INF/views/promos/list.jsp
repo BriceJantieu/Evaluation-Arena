@@ -64,10 +64,9 @@
       			</div>
       			<form action="promos.html" method="post">
       				<div class="modal-body">
-      					<div class="form-group">
     						<label>Libellé de la promo :</label>
-							<input name="label" type="text"/>
-						</div>
+							<input  class="form-control" name="label" type="text"/>
+						
       				</div>
       				<div class="modal-footer">
         				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

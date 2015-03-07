@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<title>List of matter</title>
+		<title>List of categories</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  		<script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
 	</head>
@@ -58,10 +58,8 @@
       			</div>
       			<form action="categories.html" method="post">
       				<div class="modal-body">
-      					<div class="form-group">
-    						<label>Libellé de la categorie :</label>
-							<input name="name" type="text"/>
-						</div>
+    					<label>Libellé de la categorie :</label>
+						<input style="margin-bottom : 20px;" class="form-control" name="name" type="text"/>
 						<div class="form-group">
 							<select class="form-control" name="matiere">
 								<option selected value="0">Matière</option>

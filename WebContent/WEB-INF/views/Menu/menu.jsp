@@ -17,6 +17,7 @@
    <li><a href='/EvaluationArena/promos'>Promo</a></li>
    <li><a href='/EvaluationArena/questions'>Question</a></li>
    <li><a href='/EvaluationArena/users'>Users</a></li>
+   <li><a href='/EvaluationArena/logout.html'>Logout</a></li>
    
 </ul>
 </div>
