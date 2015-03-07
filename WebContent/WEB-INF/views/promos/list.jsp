@@ -5,36 +5,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<title>List of promos</title>
+</head>
+ <script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%@ include file="../Menu/menu.jsp" %>
-	<form action="promos.html" method="get">
-		<select name="promo"
+<%@ include file="../Menu/menu.jsp" %>
+	<div class="container">
+ 	<H1>Elèves</H1>	
+	<form style="margin-bottom : 20px;" class="form-inline pull-right" action="promos.html" method="get">
+		<div class="form-group">
+    		<label>Select promo : </label>
+    		<select class="form-control" name="promo"
 			onchange="submit()">
 			<option id="0" value="0">Promos</option>
 			<c:forEach var="promo" items="${promos}">
 				<c:if test="${promo.id == selectedPromoId}">
 					<option selected="selected" value="${promo.id}">${promo.libelle}</option>
 				</c:if>
-				
 				<c:if test="${promo.id != selectedPromoId}">
 					<option value="${promo.id}">${promo.libelle}</option>
 				</c:if>
 			</c:forEach>
 		</select>
+ 		 </div>
+		
 	</form>
 	
-	Elèves
-	<table class="table table-strip">
-		<tr>
-			<td><strong>Prénom</strong></td>
-			<td><strong>Nom</strong></td>
-			<td><strong>Email</strong></td>
-			<td><strong>Promo</strong>
-		</tr>
-		
-		<c:forEach var="user" items="${users}" >
+	
+	<table  class="table table-striped table-bordered">
+        	<tr>
+            	<th>Prénom</th>
+            	<th>Nom</th>
+            	<th>Email</th>
+            	<th>Promo</th>
+        	</tr>
+        	<c:forEach var="user" items="${users}" >
 			<tr>
 				<td> ${user.firstName} </td>
 				<td> ${user.lastName} </td>
@@ -43,5 +50,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div>
+	
 </body>
 </html>

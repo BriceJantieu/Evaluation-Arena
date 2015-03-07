@@ -4,53 +4,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<%@ include file="../Menu/menu.jsp" %>
-	<form action="questions.html" method="get">
-		<select name="categorie"
-			onchange="submit()">
-			<option id="0" value="0">Catégories</option>
-			<c:forEach var="categorie" items="${categories}">
-				<c:if test="${categorie.id == selectedCategorieId}">
-					<option selected="selected" value="${categorie.id}">${categorie.name}</option>
-				</c:if>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<title>List of questions</title>
+ 		<script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<%@ include file="../Menu/menu.jsp" %>
+		<div class="container">
+		<h1>Questions</h1>
+			<div class="form-group">
+				<form style="margin-bottom : 20px;" class="form-inline pull-right" action="questions.html" method="get">
+					<div class="form-group">
+						<label>Select category : </label>
+						<select name="categorie" onchange="submit()">
+							<option id="0" value="0">all categories</option>
+							<c:forEach var="categorie" items="${categories}">
+								<c:if test="${categorie.id == selectedCategorieId}">
+									<option selected="selected" value="${categorie.id}">${categorie.name}</option>
+								</c:if>
 				
-				<c:if test="${categorie.id != selectedCategorieId}">
-					<option value="${categorie.id}">${categorie.name}</option>
-				</c:if>
-			</c:forEach>
-		</select>
-	</form>
-
-	<form action="questions.html" method="get">
-		<select name="matiere"
-			onchange="submit()">
-			<option id="0" value="0">Matières</option>
-			<c:forEach var="matiere" items="${matieres}">
-				<c:if test="${matiere.id == selectedMatiereId}">
-					<option selected="selected" value="${matiere.id}">${matiere.name}</option>
-				</c:if>
+								<c:if test="${categorie.id != selectedCategorieId}">
+									<option value="${categorie.id}">${categorie.name}</option>
+								</c:if>
+							</c:forEach>
+						</select>
+					</div>
+				</form>
 				
-				<c:if test="${matiere.id != selectedMatiereId}">
-					<option value="${matiere.id}">${matiere.name}</option>
-				</c:if>
-			</c:forEach>
-			<option selected value="0">Catégories</option>
-			<c:forEach var="categorie" items="${categories}">
-				<option value="${categorie.id}">${categorie.name}</option>
-			</c:forEach>
-		</select>
-	</form>
+				<form style="margin-bottom : 20px; margin-right : 50px;" class="form-inline pull-right" action="questions.html" method="get">
+					<div class="form-group">
+						<label>Select matter : </label>
+							<select name="matiere" onchange="submit()">
+								<option id="0" value="0">All matter</option>
+								<c:forEach var="matiere" items="${matieres}">
+									<c:if test="${matiere.id == selectedMatiereId}">
+										<option selected="selected" value="${matiere.id}">${matiere.name}</option>
+									</c:if>
+				
+									<c:if test="${matiere.id != selectedMatiereId}">
+										<option value="${matiere.id}">${matiere.name}</option>
+									</c:if>
+								</c:forEach>
+							</select>
+					</div>
+				</form>
+			</div>
 
-	<table class="table table-strip">
+	
+
+	<table  class="table table-striped table-bordered">
 		<tr>
-			<td><strong>ID</strong></td>
-			<td><strong>Nom</strong></td>
-			<td><strong>Matière</strong></td>
-			<td><strong>Catégorie</strong>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Matter</th>
+			<th>Category</th>
 		</tr>
 		<c:forEach var="question" items="${questions}" >
 			<tr>
@@ -60,6 +68,7 @@
 				<td> ${question.categorie.matiere.libelle} </td>
 			</tr>
 		</c:forEach>
-	</table>
+	</table>	
+		</div>
 </body>
 </html>
