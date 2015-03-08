@@ -86,7 +86,6 @@
 			<tr>
 				<th>Nom</th>
 				<th>Nombre d'élèves</th>
-				<th>Détails</th>
 			</tr>
 
 			<c:forEach var="promo" items="${promos}">
@@ -94,40 +93,52 @@
 					<td>${promo.getLibelle()}</td>
 					<td>${promo.getUtilisateurCount()}</td>
 					<td>
-						<c:if test="${promo.getUtilisateurSet() != null && !promo.getUtilisateurSet().isEmpty() }">
-						<button type="button" class="btn btn-primary btn-lg"
-							data-toggle="modal" data-target="#details${promo.id}">Détails</button>
+					<c:if
+							test="${promo.getUtilisateurSet() == null || promo.getUtilisateurSet().isEmpty()}">
+							<button disabled="disabled" type="button" class="btn btn-default btn-group-sm"
+								>
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								Détail
+							</button>
+						</c:if>
+					<c:if
+							test="${promo.getUtilisateurSet() != null && !promo.getUtilisateurSet().isEmpty() }">
+							<button type="button" class="btn btn-default btn-group-sm"
+								data-toggle="modal" data-target="#details${promo.id}">
+								<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+								Détail
+							</button>
 
-						<div class="modal fade" id="details${promo.id}" tabindex="-1" role="dialog"
-							aria-labelledby="myModalLabel" aria-hidden="true">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">
-										Liste des élèves</h4>
-									</div>
-									<table class="table table-striped table-bordered">
-										<tr>
-											<th>Nom</th>
-											<th>Prénom</th>
-										</tr>
 
-										<c:forEach var="student" items="${promo.getUtilisateurSet()}">
+							<div class="modal fade" id="details${promo.id}" tabindex="-1"
+								role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title" id="myModalLabel">Liste des
+												élèves</h4>
+										</div>
+										<table class="table table-striped table-bordered">
 											<tr>
-												<td>${student.lastName}</td>
-												<td>${student.firstName}</td>
+												<th>Nom</th>
+												<th>Prénom</th>
 											</tr>
-										</c:forEach>
-									</table>
+
+											<c:forEach var="student" items="${promo.getUtilisateurSet()}">
+												<tr>
+													<td>${student.lastName}</td>
+													<td>${student.firstName}</td>
+												</tr>
+											</c:forEach>
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
-						</c:if>
-					</td>
+						</c:if></td>
 				</tr>
 			</c:forEach>
 		</table>

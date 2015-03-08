@@ -14,6 +14,11 @@ public abstract class AuthentificateHttpServlet extends HttpServlet {
 		return (Integer.valueOf(userRole) == UserRole.USER_TEACHER);
 	}
 	
+	private boolean isAdmin(String userRole)
+	{
+		return (Integer.valueOf(userRole) == UserRole.USER_ADMIN);
+	}
+	
 	private boolean isConnected(String userRole)
 	{
 		return (userRole != null);
@@ -27,15 +32,29 @@ public abstract class AuthentificateHttpServlet extends HttpServlet {
 		String userRole = (String)session.getAttribute("userRole");
 		if (isConnected(userRole))
 		{
-			if (isTeacher(userRole))
+			if (isAdmin(userRole))
+			{
+				req.setAttribute("userRole", "admin");
+				doGetAdmin(req, resp);
+			}
+			else if (isTeacher(userRole))
+			{
+				req.setAttribute("userRole", null);
 				doGetTeacher(req, resp);
+			}
 			else
+			{
+
+				req.setAttribute("userRole", null);
 				doGetStudent(req, resp);
+			}
 		}
 		else
 			resp.sendRedirect("/EvaluationArena/");
 		
 	}
+	
+	public abstract void doGetAdmin(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 	
 	public abstract void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException;
 	

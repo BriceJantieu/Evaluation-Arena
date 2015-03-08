@@ -35,6 +35,53 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 		urlQuestions = getInitParameter("urlQuestions");
 	}
 	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
+		String selectedCategorieId = req.getParameter("categorie");
+		if(req.getParameter("matiere") != null)
+			selectedMatiereId = req.getParameter("matiere");
+		
+		if(selectedCategorieId == null || selectedCategorieId.isEmpty())
+			selectedCategorieId = "0";
+		
+		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
+			selectedMatiereId = "0";
+		
+		List<Matiere> matieres = null;
+		categories = null;
+		List<Question> questions = null;
+		
+		String questionQuery = "from Question";
+		String categoryQuery = "from Categorie";
+		
+		if(!selectedMatiereId.equals("0"))
+			categoryQuery += " where Matiere_ID = " + selectedMatiereId;
+		
+		try {
+			
+			matieres = HibernateUtil.currentSession().find("from Matiere");
+			categories = HibernateUtil.currentSession().find(categoryQuery);
+
+			if(!selectedCategorieId.equals("0")){
+				questionQuery += " where Categorie_ID = " + selectedCategorieId;
+				questions = HibernateUtil.currentSession().find(questionQuery);
+			} else if(!selectedMatiereId.equals("0"))
+				questions = retrieveQuestions(selectedMatiereId);
+			else
+				questions = HibernateUtil.currentSession().find(questionQuery);
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+
+		req.setAttribute("selectedCategorieId", selectedCategorieId);
+		req.setAttribute("selectedMatiereId", selectedMatiereId);
+		req.setAttribute("categories", categories);
+		req.setAttribute("questions", questions);
+		req.setAttribute("matieres", matieres);
+		
+		getServletContext().getRequestDispatcher(urlQuestions).forward(req, resp);
+	}
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -89,49 +136,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String selectedCategorieId = req.getParameter("categorie");
-		if(req.getParameter("matiere") != null)
-			selectedMatiereId = req.getParameter("matiere");
-		
-		if(selectedCategorieId == null || selectedCategorieId.isEmpty())
-			selectedCategorieId = "0";
-		
-		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
-			selectedMatiereId = "0";
-		
-		List<Matiere> matieres = null;
-		categories = null;
-		List<Question> questions = null;
-		
-		String questionQuery = "from Question";
-		String categoryQuery = "from Categorie";
-		
-		if(!selectedMatiereId.equals("0"))
-			categoryQuery += " where Matiere_ID = " + selectedMatiereId;
-		
-		try {
-			
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-			categories = HibernateUtil.currentSession().find(categoryQuery);
-
-			if(!selectedCategorieId.equals("0")){
-				questionQuery += " where Categorie_ID = " + selectedCategorieId;
-				questions = HibernateUtil.currentSession().find(questionQuery);
-			} else if(!selectedMatiereId.equals("0"))
-				questions = retrieveQuestions(selectedMatiereId);
-			else
-				questions = HibernateUtil.currentSession().find(questionQuery);
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-
-		req.setAttribute("selectedCategorieId", selectedCategorieId);
-		req.setAttribute("selectedMatiereId", selectedMatiereId);
-		req.setAttribute("categories", categories);
-		req.setAttribute("questions", questions);
-		req.setAttribute("matieres", matieres);
-		
-		getServletContext().getRequestDispatcher(urlQuestions).forward(req, resp);
+		get(req, resp);
 	}
 
 
@@ -163,6 +168,13 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 		}
 		
 		return questions;
+	}
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}
 
 }

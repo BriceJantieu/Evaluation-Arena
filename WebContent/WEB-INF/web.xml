@@ -25,6 +25,12 @@
   </servlet-mapping>
   
   <servlet-mapping>
+    <servlet-name>HomePageServlet</servlet-name>
+    <url-pattern>/home.html</url-pattern>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
     <servlet-name>PromoServlet</servlet-name>
     <url-pattern>/promos.html</url-pattern>
     <url-pattern>/promos</url-pattern>
@@ -77,6 +83,23 @@
     <url-pattern>/categories/create</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>HomePageServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.HomePageServlet</servlet-class>
+    <init-param>
+      <param-name>urlHomePageTeacher</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageTeacher.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>urlHomePageAdmin</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageAdmin.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>urlHomePageStudent</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageAdmin.jsp</param-value>
+    </init-param>
+  </servlet>
+  
   <servlet>
     <servlet-name>HomeServlet</servlet-name>
     <servlet-class>com.ingesup.evaluationArena.servlets.HomeServlet</servlet-class>

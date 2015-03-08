@@ -58,4 +58,13 @@ public class CreatePromoServlet extends AuthentificateHttpServlet {
 			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
 	}
+
+
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
 }

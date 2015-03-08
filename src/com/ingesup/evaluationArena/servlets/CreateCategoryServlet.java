@@ -29,7 +29,21 @@ public class CreateCategoryServlet extends AuthentificateHttpServlet {
 		
 		urlCreateCategorie = getInitParameter("urlCreateCategorie");
 	}
+	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 
+		try {
+			matieres = HibernateUtil.currentSession().find("from Matiere");
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		req.setAttribute("matieres", matieres);
+			
+		getServletContext().getRequestDispatcher(urlCreateCategorie).forward(req, resp);
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -55,17 +69,7 @@ public class CreateCategoryServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		try {
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-		} catch (HibernateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-			
-		req.setAttribute("matieres", matieres);
-			
-		getServletContext().getRequestDispatcher(urlCreateCategorie).forward(req, resp);
+		get(req, resp);
 	}
 
 	@Override
@@ -74,6 +78,13 @@ public class CreateCategoryServlet extends AuthentificateHttpServlet {
 		
 		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
+	}
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}	
 
 }

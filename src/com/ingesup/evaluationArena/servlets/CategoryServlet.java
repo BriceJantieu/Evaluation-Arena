@@ -28,11 +28,7 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		urlCategories = getInitParameter("urlCategories");
 	}
 	
-
-
-	@Override
-	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String selectedMatiereId = req.getParameter("matiere");
 		
 		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
@@ -60,6 +56,12 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		req.setAttribute("matieres", matieres);
 		
 		getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}
 	
 	@Override
@@ -91,6 +93,15 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 			throws IOException {
 			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
+	}
+
+
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}	
 
 }

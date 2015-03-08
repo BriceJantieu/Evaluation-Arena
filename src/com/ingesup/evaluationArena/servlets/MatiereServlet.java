@@ -30,12 +30,8 @@ public class MatiereServlet extends AuthentificateHttpServlet {
 		urlMatieres = getInitParameter("urlMatieres");
 	}
 	
-
-
-	@Override
-	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
 		List<Matiere> matieres = null;
 		
 		try {
@@ -47,6 +43,13 @@ public class MatiereServlet extends AuthentificateHttpServlet {
 		req.setAttribute("matieres", matieres);
 		
 		getServletContext().getRequestDispatcher(urlMatieres).forward(req, resp);
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}
 	
 	@Override
@@ -74,6 +77,15 @@ public class MatiereServlet extends AuthentificateHttpServlet {
 			throws IOException {
 			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
+	}
+
+
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}
 
 }
