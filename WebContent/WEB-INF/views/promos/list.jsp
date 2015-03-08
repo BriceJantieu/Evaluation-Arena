@@ -94,11 +94,11 @@
 					<td>${promo.getLibelle()}</td>
 					<td>${promo.getUtilisateurCount()}</td>
 					<td>
+						<c:if test="${promo.getUtilisateurSet() != null && !promo.getUtilisateurSet().isEmpty() }">
 						<button type="button" class="btn btn-primary btn-lg"
-							data-toggle="modal" data-target="#myModal">Détails</button>
+							data-toggle="modal" data-target="#details${promo.id}">Détails</button>
 
-
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+						<div class="modal fade" id="details${promo.id}" tabindex="-1" role="dialog"
 							aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -126,13 +126,14 @@
 								</div>
 							</div>
 						</div>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</table>
 
 		<button type="button" class="btn btn-primary btn-lg"
-			data-toggle="modal" data-target="#myModal">Create</button>
+			data-toggle="modal" data-target="#myModal">Ajouter</button>
 
 
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -144,7 +145,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Create promos</h4>
+						<h4 class="modal-title" id="myModalLabel">Ajout Promo</h4>
 					</div>
 					<form action="promos.html" method="post">
 						<div class="modal-body">
@@ -154,8 +155,8 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Save</button>
+								data-dismiss="modal">Fermer</button>
+							<button type="submit" class="btn btn-primary">Enregistrer</button>
 						</div>
 					</form>
 				</div>

@@ -35,13 +35,12 @@
 
 	<table  class="table table-striped table-bordered">
 				<tr>
-					<th>ID</th>
-					<th>nom</th>
-					<th>email</th>
-					<th>firstname</th>
-					<th>lastname</th>
-					<th>password</th>
-					<th>birthdate</th>
+					<th>Id</th>
+					<th>Identifiant</th>
+					<th>Email</th>
+					<th>Prénom</th>
+					<th>Nom</th>
+					<th>Anniversaire</th>
 					<th>Groupe utilisateur</th>
 				</tr>
 				<c:forEach var="utilisateur" items="${utilisateurs}" >
@@ -51,7 +50,6 @@
 						<td> ${utilisateur.email} </td>
 						<td> ${utilisateur.firstName} </td>
 						<td> ${utilisateur.lastName} </td>
-						<td> ${utilisateur.password} </td>
 						<td> ${utilisateur.birthDate} </td>
 						<td> ${utilisateur.role.libelle} </td>
 					</tr>
@@ -59,7 +57,7 @@
 	</table>
 	
 	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  	Create
+  	Ajouter
 	</button>
 
 
@@ -72,17 +70,17 @@
       			</div>
       			<form action="users.html" method="post">
       				<div class="modal-body">
-      					<label>Username</label>
+      					<label>Identifiant</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="username" type="text"/>
       					<label>Email</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="email" type="text"/>
-						<label>Password</label>
+						<label>Mot de passe</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="password" type="text"/>
-						<label>FirstName</label>
+						<label>Prénom</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="firstname" type="text"/>
-						<label>LastName</label>
+						<label>Nom</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="lastname" type="text"/>
-						<label>Birthdate</label>
+						<label>Anniversaire</label>
 						<input style="margin-bottom : 10px;" class="form-control" name="birthdate" type="text" data-role="date"/>
 		
 		<select style="margin-bottom : 10px;" class="form-control" name="groupe">
@@ -93,8 +91,8 @@
 		</select>
       				</div>
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="submit" class="btn btn-primary" >Save</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        				<button type="submit" class="btn btn-primary">Enregistrer</button>
       				</div>
       			</form>
     		</div>

@@ -114,6 +114,13 @@ public abstract class BasePromo  implements Serializable {
 		this._utilisateurSet = _utilisateurSet;
 	}
 	
+	public int getUtilisateurCount(){
+		if(this._utilisateurSet == null)
+			return 0;
+		
+		return this._utilisateurSet.size();
+	}
+	
 	public void addToUtilisateurSet (Object obj) {
 		if (null == this._utilisateurSet) this._utilisateurSet = new java.util.HashSet();
 		this._utilisateurSet.add(obj);

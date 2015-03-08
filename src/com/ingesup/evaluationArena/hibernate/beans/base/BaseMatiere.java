@@ -136,6 +136,13 @@ public abstract class BaseMatiere  implements Serializable {
 		this._categorieSet = _categorieSet;
 	}
 	
+	public int getCategoryCount(){
+		if(this._categorieSet == null)
+			return 0;
+		
+		return this._categorieSet.size();
+	}
+	
 	public void addToCategorieSet (Object obj) {
 		if (null == this._categorieSet) this._categorieSet = new java.util.HashSet();
 		this._categorieSet.add(obj);
