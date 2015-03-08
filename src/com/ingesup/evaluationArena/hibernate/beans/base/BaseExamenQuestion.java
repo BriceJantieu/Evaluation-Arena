@@ -17,19 +17,23 @@ import java.io.Serializable;
  */
 public abstract class BaseExamenQuestion  implements Serializable {
 
-	public static String PROP_WEIGHT = "Weight";
-	public static String PROP_ORDER = "Order";
+	public static String PROP_QUESTION_ORDER = "QuestionOrder";
+	public static String PROP_QUESTION = "Question";
 	public static String PROP_ID = "Id";
+	public static String PROP_EXAMEN = "Examen";
 
 
 	private int hashCode = Integer.MIN_VALUE;
 
 	// primary key
-	private com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id;
+	private java.lang.Integer _id;
 
 	// fields
-	private java.lang.Integer _weight;
-	private java.lang.Integer _order;
+	private java.lang.Integer _questionOrder;
+
+	// many to one
+	private com.ingesup.evaluationArena.hibernate.beans.Examen _examen;
+	private com.ingesup.evaluationArena.hibernate.beans.Question _question;
 
 
 	// constructors
@@ -40,7 +44,7 @@ public abstract class BaseExamenQuestion  implements Serializable {
 	/**
 	 * Constructor for primary key
 	 */
-	public BaseExamenQuestion (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id) {
+	public BaseExamenQuestion (java.lang.Integer _id) {
 		this.setId(_id);
 		initialize();
 	}
@@ -49,13 +53,15 @@ public abstract class BaseExamenQuestion  implements Serializable {
 	 * Constructor for required fields
 	 */
 	public BaseExamenQuestion (
-		com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id,
-		java.lang.Integer _weight,
-		java.lang.Integer _order) {
+		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Examen _examen,
+		com.ingesup.evaluationArena.hibernate.beans.Question _question,
+		java.lang.Integer _questionOrder) {
 
 		this.setId(_id);
-		this.setWeight(_weight);
-		this.setOrder(_order);
+		this.setExamen(_examen);
+		this.setQuestion(_question);
+		this.setQuestionOrder(_questionOrder);
 		initialize();
 	}
 
@@ -66,8 +72,10 @@ public abstract class BaseExamenQuestion  implements Serializable {
 	/**
 	 * Return the unique identifier of this class
      * @hibernate.id
+     *  generator-class="vm"
+     *  column="ID"
      */
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK getId () {
+	public java.lang.Integer getId () {
 		return _id;
 	}
 
@@ -75,41 +83,61 @@ public abstract class BaseExamenQuestion  implements Serializable {
 	 * Set the unique identifier of this class
 	 * @param _id the new ID
 	 */
-	public void setId (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id) {
+	public void setId (java.lang.Integer _id) {
 		this._id = _id;
 		this.hashCode = Integer.MIN_VALUE;
 	}
 
 
 	/**
-	 * Return the value associated with the column: Weight
+	 * Return the value associated with the column: Question_Order
 	 */
-	public java.lang.Integer getWeight () {
-		return _weight;
+	public java.lang.Integer getQuestionOrder () {
+		return _questionOrder;
 	}
 
 	/**
-	 * Set the value related to the column: Weight
-	 * @param _weight the Weight value
+	 * Set the value related to the column: Question_Order
+	 * @param _questionOrder the Question_Order value
 	 */
-	public void setWeight (java.lang.Integer _weight) {
-		this._weight = _weight;
+	public void setQuestionOrder (java.lang.Integer _questionOrder) {
+		this._questionOrder = _questionOrder;
 	}
 
 
 	/**
-	 * Return the value associated with the column: Order
+     * @hibernate.property
+     *  column=Examen_ID
+	 * not-null=true
 	 */
-	public java.lang.Integer getOrder () {
-		return _order;
+	public com.ingesup.evaluationArena.hibernate.beans.Examen getExamen () {
+		return this._examen;
 	}
 
 	/**
-	 * Set the value related to the column: Order
-	 * @param _order the Order value
+	 * Set the value related to the column: Examen_ID
+	 * @param _examen the Examen_ID value
 	 */
-	public void setOrder (java.lang.Integer _order) {
-		this._order = _order;
+	public void setExamen (com.ingesup.evaluationArena.hibernate.beans.Examen _examen) {
+		this._examen = _examen;
+	}
+
+
+	/**
+     * @hibernate.property
+     *  column=Question_ID
+	 * not-null=true
+	 */
+	public com.ingesup.evaluationArena.hibernate.beans.Question getQuestion () {
+		return this._question;
+	}
+
+	/**
+	 * Set the value related to the column: Question_ID
+	 * @param _question the Question_ID value
+	 */
+	public void setQuestion (com.ingesup.evaluationArena.hibernate.beans.Question _question) {
+		this._question = _question;
 	}
 
 

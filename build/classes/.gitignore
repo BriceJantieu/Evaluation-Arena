@@ -1,0 +1,15 @@
+/com
+/hibernate.cfg.xml
+/Categorie.hbm
+/Examen.hbm
+/ExamenPromo.hbm
+/ExamenQuestion.hbm
+/ExmanenUtilisateur.hbm
+/Matiere.hbm
+/Promo.hbm
+/Question.hbm
+/Reponse.hbm
+/Role.hbm
+/Utilisateur.hbm
+/UtilisateurQuestionReponse.hbm
+/TestTable.hbm

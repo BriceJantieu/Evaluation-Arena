@@ -33,5 +33,6 @@ public class Categorie extends BaseCategorie {
 			_matiere,
 			_name);
 	}
+
 /*[CONSTRUCTOR MARKER END]*/
 }
