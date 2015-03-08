@@ -17,24 +17,23 @@
 <body>
 	<%@ include file="../Menu/menu.jsp"%>
 	<div class="container">
-		<H1>Teacher</H1>
+		<H1>Liste des examens</H1>
 		<table class="table table-striped table-bordered">
 				<tr>
-					<th>question</th>
-					<th>reponse 1</th>
-					<th>reponse 2</th>
-					<th>reponse 3</th>
+					<th>Nom</th>
+					<th>Matiere</th>
+					<th>Note</th>
 				</tr>
 		
-				<c:forEach var="question" items="${questions}" >
+				<c:forEach var="examen" items="${examens}" >
 					<tr>
-						<td> ${question.content} </td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td> ${examen.examen.name} </td>
+						<td> ${examen.examen.matiere.libelle} </td>
+						
 					</tr>
 				</c:forEach>
 			</table>
+	
 	</div>
 </body>
 </html>

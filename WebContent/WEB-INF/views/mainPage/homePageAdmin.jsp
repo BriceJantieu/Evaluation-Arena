@@ -18,6 +18,26 @@
 	<%@ include file="../Menu/menu.jsp"%>
 	<div class="container">
 		<H1>ADMIN</H1>
+		<H1>Teacher</H1>
+		<table class="table table-striped table-bordered">
+				<tr>
+					<th>question</th>
+					<th>reponse 1</th>
+					<th>reponse 2</th>
+					<th>reponse 3</th>
+				</tr>
+		
+				<c:forEach var="question" items="${questions}" >
+					<tr>
+						<td> ${question.content} </td>
+						<c:forEach var="response" items="${question.reponseSet}" >
+							<td> ${response.content}</td>
+						</c:forEach>
+						
+					</tr>
+				</c:forEach>
+			</table>
+	
 	</div>
 </body>
 </html>

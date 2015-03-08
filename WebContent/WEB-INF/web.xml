@@ -54,7 +54,11 @@
     <url-pattern>/categories</url-pattern>
   </servlet-mapping>
 
-    
+    <servlet-mapping>
+    <servlet-name>StudentExamenServlet</servlet-name>
+    <url-pattern>/studentexamens.html</url-pattern>
+    <url-pattern>/studentexamens</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
     <servlet-name>CreateQuestionServlet</servlet-name>
@@ -106,6 +110,15 @@
     <init-param>
       <param-name>urlHome</param-name>
       <param-value>/WEB-INF/views/home.jsp</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>StudentExamenServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.StudentExamenServlet</servlet-class>
+    <init-param>
+      <param-name>urlStudentExamens</param-name>
+      <param-value>/WEB-INF/views/examens/listStudent.jsp</param-value>
     </init-param>
   </servlet>
   
