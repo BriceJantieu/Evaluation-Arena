@@ -11,9 +11,11 @@ import net.sf.hibernate.HibernateException;
 import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Promo;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreatePromoServlet extends HttpServlet {
+public class CreatePromoServlet extends AuthentificateHttpServlet {
 
 	private String urlCreatePromo;
 	
@@ -24,11 +26,7 @@ public class CreatePromoServlet extends HttpServlet {
 		urlCreatePromo = getInitParameter("urlCreatePromo");
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		getServletContext().getRequestDispatcher(urlCreatePromo).forward(req, resp);
-	}
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -45,5 +43,19 @@ public class CreatePromoServlet extends HttpServlet {
 			t.commit();
 			
 		} catch (HibernateException ignored) {}
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		getServletContext().getRequestDispatcher(urlCreatePromo).forward(req, resp);
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}
 }

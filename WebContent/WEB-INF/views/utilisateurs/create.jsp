@@ -8,7 +8,7 @@
 <title>Create New User</title>
 </head>
 <body>
-
+	<%@ include file="../Menu/menu.jsp" %>
 	<form action="create" method="post">
 		Username
 		<input name="username" type="text"/>

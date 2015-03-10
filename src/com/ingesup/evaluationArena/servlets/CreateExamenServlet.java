@@ -20,9 +20,11 @@ import com.ingesup.evaluationArena.hibernate.beans.ExamenPromo;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
 import com.ingesup.evaluationArena.hibernate.beans.Promo;
 import com.ingesup.evaluationArena.hibernate.beans.Question;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateExamenServlet extends HttpServlet {
+public class CreateExamenServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateExamen;
 	
@@ -37,36 +39,10 @@ public class CreateExamenServlet extends HttpServlet {
 		urlCreateExamen = getInitParameter("urlCreateExamen");
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		selectedMatiereId = req.getParameter("matiere");
-		
-		List<Matiere> matieres = null;
-		List<Question> questions = null;
-		List<Promo> promos = null;
-		
-		try {
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-			questions = retrieveQuestions(selectedMatiereId);
-			promos = HibernateUtil.currentSession().find("from Promo");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		req.setAttribute("matieres", matieres);
-		req.setAttribute("selectedMatiereId", selectedMatiereId);
-		req.setAttribute("questions", questions);
-		req.setAttribute("promos", promos);
-		
-		getServletContext().getRequestDispatcher(urlCreateExamen).forward(req, resp);
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-
 		if(selectedMatiereId == null || selectedMatiereId.equals("0"))
 			return;
 		
@@ -97,6 +73,35 @@ public class CreateExamenServlet extends HttpServlet {
 			
 		} catch (HibernateException ignored) {}
 	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		List<Matiere> matieres = null;
+		List<Question> questions = null;
+		List<Promo> promos = null;
+		
+		try {
+			matieres = HibernateUtil.currentSession().find("from Matiere");
+			questions = retrieveQuestions(selectedMatiereId);
+			promos = HibernateUtil.currentSession().find("from Promo");
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		req.setAttribute("matieres", matieres);
+		req.setAttribute("selectedMatiereId", selectedMatiereId);
+		req.setAttribute("questions", questions);
+		req.setAttribute("promos", promos);
+		
+		getServletContext().getRequestDispatcher(urlCreateExamen).forward(req, resp);
+	}
+
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
+	}	
 	
 	private List<Question> retrieveQuestions(String matiereId) throws HibernateException{
 		if(matiereId == null || matiereId.equals("0"))

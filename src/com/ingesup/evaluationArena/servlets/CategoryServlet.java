@@ -12,9 +12,11 @@ import net.sf.hibernate.HibernateException;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CategoryServlet extends HttpServlet {
+public class CategoryServlet extends AuthentificateHttpServlet {
 
 	private String urlCategories;
 	
@@ -25,11 +27,11 @@ public class CategoryServlet extends HttpServlet {
 		urlCategories = getInitParameter("urlCategories");
 	}
 	
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
 
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String selectedMatiereId = req.getParameter("matiere");
 		
 		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
@@ -55,7 +57,22 @@ public class CategoryServlet extends HttpServlet {
 		req.setAttribute("matieres", matieres);
 		req.setAttribute("categories", categories);
 		
-		getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
+		try {
+			getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 		
 	}	
 

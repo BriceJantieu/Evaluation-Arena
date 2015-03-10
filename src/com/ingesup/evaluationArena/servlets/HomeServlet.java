@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.hibernate.HibernateException;
 
@@ -56,7 +57,13 @@ public class HomeServlet extends HttpServlet {
 		}
 		
 		if(users != null && users.size() > 0)
+		{
+			HttpSession session = req.getSession();
+			session.setAttribute("userID", users.get(0).getId().toString());
+			session.setAttribute("userRole", users.get(0).getRole().getId().toString());
 			resp.sendRedirect("/EvaluationArena/promos.html");
+			
+		}
 		else
 			getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
 			

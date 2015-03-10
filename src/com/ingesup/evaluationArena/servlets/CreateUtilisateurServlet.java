@@ -19,6 +19,8 @@ import net.sf.hibernate.Transaction;
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Role;
 import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 /**
@@ -29,7 +31,7 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 		initParams = { 
 				@WebInitParam(name = "urlCreateUtilisateur", value = "/WEB-INF/views/utilisateurs/create.jsp", description = "Path du fichier jsp de la vue")
 		})
-public class CreateUtilisateurServlet extends HttpServlet {
+public class CreateUtilisateurServlet extends AuthentificateHttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -45,18 +47,6 @@ private String urlCreateUtilisateur;
     private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
     private List<Role> Groupes = null;
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			Groupes = HibernateUtil.currentSession().find("from Role");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		request.setAttribute("groupes", Groupes);
-		
-		getServletContext().getRequestDispatcher(urlCreateUtilisateur).forward(request, response);
-	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -97,5 +87,28 @@ private String urlCreateUtilisateur;
 			t.commit();
 			
 		} catch (HibernateException ignored) {}
+	}
+
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			Groupes = HibernateUtil.currentSession().find("from Role");
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		req.setAttribute("groupes", Groupes);
+		
+		getServletContext().getRequestDispatcher(urlCreateUtilisateur).forward(req, resp);
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}
 }

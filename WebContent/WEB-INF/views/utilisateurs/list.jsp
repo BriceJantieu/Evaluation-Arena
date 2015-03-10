@@ -8,23 +8,23 @@
 <title>Utilisateurs Preview</title>
 </head>
 <body>
+	<%@ include file="../Menu/menu.jsp" %>
+	<form action="utilisateurs.html" method="get">
+		<select name="filter_role"
+		onchange="submit()">
+			<option selected value="${selectedRoleId}">Groupes Utilisateurs</option>
+			<c:forEach var="role" items="${roleList}">
+				<c:if test="${role.id == selectedRoleId}">
+					<option selected="selected" value="${role.id} }">${role.libelle }</option>
+				</c:if>
+				<c:if test="${role.id != selectedRoleId }">
+					<option value="${role.id}">${role.libelle}</option>
+				</c:if>
+			</c:forEach>
+		</select>
+	</form>
 
-<form action="utilisateurs.html" method="get">
-	<select name="filter_role"
-	onchange="submit()">
-		<option selected value="${selectedRoleId}">Groupes Utilisateurs</option>
-		<c:forEach var="role" items="${roleList}">
-			<c:if test="${role.id == selectedRoleId}">
-				<option selected="selected" value="${role.id} }">${role.libelle }</option>
-			</c:if>
-			<c:if test="${role.id != selectedRoleId }">
-				<option value="${role.id}">${role.libelle}</option>
-			</c:if>
-		</c:forEach>
-	</select>
-</form>
-
-<table class="table table-strip">
+	<table class="table table-strip">
 				<tr>
 					<td><strong>ID</strong></td>
 					<td><strong>nom</strong></td>

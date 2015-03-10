@@ -45,11 +45,13 @@
   <servlet-mapping>
     <servlet-name>CreateQuestionServlet</servlet-name>
     <url-pattern>/questions/create</url-pattern>
+    <url-pattern>/questions/create.html</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
   	<servlet-name>CreateMatiereServlet</servlet-name>
   	<url-pattern>/matieres/create</url-pattern>
+  	<url-pattern>/matieres/create.html</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -92,6 +94,10 @@
       <param-name>urlPromos</param-name>
       <param-value>/WEB-INF/views/promos/list.jsp</param-value>
     </init-param>
+    <init-param>
+          <param-name>urlHome</param-name>
+      	  <param-value>/WEB-INF/views/home.jsp</param-value>
+      </init-param>
   </servlet>
   
   <servlet>
@@ -160,6 +166,11 @@
           <param-name>urlCreatePromo</param-name>
           <param-value>/WEB-INF/views/promos/create.jsp</param-value>
       </init-param>
+      <init-param>
+          <param-name>urlHome</param-name>
+      	  <param-value>/WEB-INF/views/home.jsp</param-value>
+      </init-param>
+       
   </servlet>
   
 </web-app>

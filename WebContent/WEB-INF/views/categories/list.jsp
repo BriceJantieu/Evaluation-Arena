@@ -8,6 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+	<%@ include file="../Menu/menu.jsp" %>
+>>>>>>> 5009d053a1f7db5002af91600212ab976e469cca
 	<form action="categories.html" method="get">
 		<select name="matiere"
 			onchange="submit()">

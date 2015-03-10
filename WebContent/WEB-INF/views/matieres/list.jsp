@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../Menu/menu.jsp" %>
 	Matières
 	<table class="table table-strip">
 		<tr>

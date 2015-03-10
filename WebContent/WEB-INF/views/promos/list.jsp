@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../Menu/menu.jsp" %>
 	<form action="promos.html" method="get">
 		<select name="promo"
 			onchange="submit()">

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%@ include file="../Menu/menu.jsp" %>
 	<form action="create" method="post">
 		Libellé de la matière
 		<input name="label" type="text"/>

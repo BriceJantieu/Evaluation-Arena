@@ -13,9 +13,11 @@ import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
+import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
+import com.ingesup.evaluationArena.tools.ConstantURL;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
 
-public class CreateCategoryServlet extends HttpServlet {
+public class CreateCategoryServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateCategorie;
 	
@@ -26,21 +28,6 @@ public class CreateCategoryServlet extends HttpServlet {
 		super.init();
 		
 		urlCreateCategorie = getInitParameter("urlCreateCategorie");
-	}
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		
-		try {
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		req.setAttribute("matieres", matieres);
-		
-		getServletContext().getRequestDispatcher(urlCreateCategorie).forward(req, resp);
 	}
 
 	@Override
@@ -63,6 +50,30 @@ public class CreateCategoryServlet extends HttpServlet {
 			t.commit();
 			
 		} catch (HibernateException ignored) {}
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		try {
+			matieres = HibernateUtil.currentSession().find("from Matiere");
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		req.setAttribute("matieres", matieres);
+			
+		getServletContext().getRequestDispatcher(urlCreateCategorie).forward(req, resp);
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// TODO Auto-generated method stub
+		
+		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
 	}	
 
 }

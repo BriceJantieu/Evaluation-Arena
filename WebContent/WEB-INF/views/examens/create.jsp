@@ -8,7 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<form action="create" method="get">
+=======
+	<%@ include file="../Menu/menu.jsp" %>
+	<form action="create" method="post">
+		Nom de l'examen
+		<input name="name" type="text"/>
+		
+>>>>>>> 5009d053a1f7db5002af91600212ab976e469cca
 		Matière
 		<select name="matiere"
 			onchange="submit()">
