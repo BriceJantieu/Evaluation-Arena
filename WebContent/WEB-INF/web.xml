@@ -14,6 +14,8 @@
   <servlet-mapping>
     <servlet-name>HomeServlet</servlet-name>
     <url-pattern>/index.html</url-pattern>
+    <url-pattern>/login.html</url-pattern>
+    <url-pattern>/logout.html</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -26,6 +28,12 @@
     <servlet-name>PromoServlet</servlet-name>
     <url-pattern>/promos.html</url-pattern>
     <url-pattern>/promos</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>UtilisateurServlet</servlet-name>
+    <url-pattern>/users.html</url-pattern>
+    <url-pattern>/users</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -98,6 +106,15 @@
           <param-name>urlHome</param-name>
       	  <param-value>/WEB-INF/views/home.jsp</param-value>
       </init-param>
+  </servlet>
+  
+  <servlet>
+   <servlet-name>UtilisateurServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.UtilisateurServlet</servlet-class>
+    <init-param>
+      <param-name>urlUtilisateur</param-name>
+      <param-value>/WEB-INF/views/utilisateurs/list.jsp</param-value>
+    </init-param>
   </servlet>
   
   <servlet>

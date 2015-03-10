@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
@@ -56,18 +57,34 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		req.setAttribute("selectedMatiereId", selectedMatiereId);
 		req.setAttribute("matieres", matieres);
 		req.setAttribute("categories", categories);
+		req.setAttribute("matieres", matieres);
+		
+		getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String name = req.getParameter("name");
+		String selectedMatiereId = req.getParameter("matiere");
+		
+		Matiere m = new Matiere();
+		m.setId(Integer.valueOf(selectedMatiereId));
+		
+		Categorie c = new Categorie();
+		c.setName(name);
+		c.setMatiere(m);
 		
 		try {
-			getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Transaction t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(c);
+			t.commit();
+			resp.sendRedirect("/EvaluationArena/categories");
+		} catch (HibernateException ignored) {
+			resp.sendRedirect("/EvaluationArena/categories");
 		}
 	}
-
 
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)

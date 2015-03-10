@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Promo;
 import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
@@ -34,8 +35,18 @@ public class PromoServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String selectedPromoId = req.getParameter("promo");
+
+		List<Promo> promos = null;
+		
+		try {
+			promos = HibernateUtil.currentSession().find("from Promo");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("promos", promos);
+		
+		/*String selectedPromoId = req.getParameter("promo");
 		
 		if(selectedPromoId == null || selectedPromoId.isEmpty())
 			selectedPromoId = "0";
@@ -58,9 +69,29 @@ public class PromoServlet extends AuthentificateHttpServlet {
 
 		req.setAttribute("selectedPromoId", selectedPromoId);
 		req.setAttribute("promos", promos);
-		req.setAttribute("users", users);
+		req.setAttribute("users", users);*/
 		
 		getServletContext().getRequestDispatcher(urlPromos).forward(req, resp);
+		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String label = req.getParameter("label");
+		
+		Promo p = new Promo();
+		p.setLibelle(label);
+		
+		try {
+			Transaction t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(p);
+			t.commit();
+			resp.sendRedirect("/EvaluationArena/promos");
+		} catch (HibernateException ignored) {
+			resp.sendRedirect("EvaluationArena/promos");
+		}
 		
 	}
 

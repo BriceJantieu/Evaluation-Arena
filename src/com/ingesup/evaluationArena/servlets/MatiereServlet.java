@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Transaction;
 
 import com.ingesup.evaluationArena.hibernate.beans.Categorie;
 import com.ingesup.evaluationArena.hibernate.beans.Matiere;
@@ -47,7 +48,26 @@ public class MatiereServlet extends AuthentificateHttpServlet {
 		
 		getServletContext().getRequestDispatcher(urlMatieres).forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 
+		String label = req.getParameter("label");
+		
+		Matiere m = new Matiere();
+		m.setLibelle(label);
+		
+		try {
+			Transaction t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(m);
+			t.commit();
+			resp.sendRedirect("/EvaluationArena/matieres");
+		} catch (HibernateException ignored) {
+
+			resp.sendRedirect("/EvaluationArena/matieres");
+		}
+	}
 
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)

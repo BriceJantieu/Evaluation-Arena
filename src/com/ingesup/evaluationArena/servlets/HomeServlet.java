@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,37 +37,57 @@ public class HomeServlet extends HttpServlet {
 		//response.sendRedirect("/EvaluationArena/matieres/create");
 		//response.sendRedirect("/EvaluationArena/promos/create");
 		//resp.sendRedirect("/EvaluationArena/promos.html");
-		
-
-		getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
+		String path = req.getServletPath();
+		if (path.equals("/logout.html"))
+		{
+			//logout
+			HttpSession session = req.getSession();
+			session.removeAttribute("userID");
+			session.removeAttribute("userRole");
+			resp.sendRedirect("/EvaluationArena/");
+		}
+		else
+			getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		
-		List<Utilisateur> users = null;
-		
-		try {
-			users = HibernateUtil.currentSession().find("from Utilisateur where Password LIKE '" + password + "' and Username LIKE '" + username + "'");
-		} catch (HibernateException e) {
-			String a = e.getMessage();
-		}
-		
-		if(users != null && users.size() > 0)
+		String path = req.getServletPath();
+		if (path.equals("/login.html"))
 		{
-			HttpSession session = req.getSession();
-			session.setAttribute("userID", users.get(0).getId().toString());
-			session.setAttribute("userRole", users.get(0).getRole().getId().toString());
-			resp.sendRedirect("/EvaluationArena/promos.html");
+			String username = req.getParameter("username");
+			String password = req.getParameter("password");
 			
+			List<Utilisateur> users = null;
+			
+			try {
+				users = HibernateUtil.currentSession().find("from Utilisateur where Password LIKE '" + password + "' and Username LIKE '" + username + "'");
+			} catch (HibernateException e) {
+				String a = e.getMessage();
+			}
+			
+			if(users != null && users.size() > 0)
+			{
+				HttpSession session = req.getSession();
+				session.setAttribute("userID", users.get(0).getId().toString());
+				session.setAttribute("userRole", users.get(0).getRole().getId().toString());
+				resp.sendRedirect("/EvaluationArena/promos.html");
+				
+			}
+			else
+				getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
+				
 		}
 		else
-			getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
-			
+		{
+			//logout
+			HttpSession session = req.getSession();
+			session.removeAttribute("userID");
+			session.removeAttribute("userRole");
+		}
+		
 	}
 	
 	
