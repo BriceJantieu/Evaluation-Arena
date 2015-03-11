@@ -39,7 +39,7 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 	private String urlUtilisateur;
 	
 	private Role selectedRoleFilter;
-	private List<Role> RoleList = null;
+	private List<Role> roleList = null;
 	private SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 	
     /**
@@ -57,7 +57,7 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -78,12 +78,11 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 			try {
 				newUser.setBirthDate(formater.parse(birthdate));
 			} catch (ParseException e) {
-				e.printStackTrace();
+				newUser.setBirthDate(null);
 			}
 		//newUser.setRole();
-		if(RoleList != null)
-		{
-			for (Role r : RoleList) {
+		if(roleList != null) {
+			for (Role r : roleList) {
 				if(r.getId().toString().equals(groupe))
 					newUser.setRole(r);
 			}
@@ -108,9 +107,9 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		if(RoleList == null)
+		if(roleList == null)
 			try {
-				RoleList = HibernateUtil.currentSession().find("from Role");
+				roleList = HibernateUtil.currentSession().find("from Role");
 			} catch (HibernateException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -123,7 +122,7 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 		if(FilterRoleId != null && !FilterRoleId.isEmpty())
 		{
 			sqlRequest += " where Role_Id = " + FilterRoleId;
-			for (Role r : RoleList) {
+			for (Role r : roleList) {
 				if(r.getId().toString().equals(FilterRoleId))
 					selectedRoleFilter = r;
 			}
@@ -137,7 +136,7 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 			e.printStackTrace();
 		}
 		
-		req.setAttribute("roleList", RoleList );
+		req.setAttribute("roleList", roleList);
 		if(FilterRoleId == null || FilterRoleId.isEmpty())
 			FilterRoleId = "0";
 		req.setAttribute("selectedRoleId", FilterRoleId);

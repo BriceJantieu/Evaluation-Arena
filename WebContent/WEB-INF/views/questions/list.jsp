@@ -15,23 +15,26 @@
 		<div class="container">
 		<h1>Questions</h1>
 			<div class="form-group">
-				<form style="margin-bottom : 20px;" class="form-inline pull-right" action="questions.html" method="get">
-					<div class="form-group">
-						<label>Catégorie : </label>
-						<select class="form-control" name="categorie" onchange="submit()">
-							<option id="0" value="0">Toutes</option>
-							<c:forEach var="categorie" items="${categories}">
-								<c:if test="${categorie.id == selectedCategorieId}">
-									<option selected="selected" value="${categorie.id}">${categorie.name}</option>
-								</c:if>
 				
-								<c:if test="${categorie.id != selectedCategorieId}">
-									<option value="${categorie.id}">${categorie.name}</option>
-								</c:if>
-							</c:forEach>
-						</select>
-					</div>
-				</form>
+				<c:if test="${selectedMatiereId != null && !selectedMatiereId.equals('0')}">
+					<form style="margin-bottom : 20px;" class="form-inline pull-right" action="questions.html" method="get">
+						<div class="form-group">
+							<label>Catégorie : </label>
+							<select class="form-control" name="categorie" onchange="submit()">
+								<option id="0" value="0">Toutes</option>
+								<c:forEach var="categorie" items="${categories}">
+									<c:if test="${categorie.id == selectedCategorieId}">
+										<option selected="selected" value="${categorie.id}">${categorie.name}</option>
+									</c:if>
+					
+									<c:if test="${categorie.id != selectedCategorieId}">
+										<option value="${categorie.id}">${categorie.name}</option>
+									</c:if>
+								</c:forEach>
+							</select>
+						</div>
+					</form>
+				</c:if>
 				
 				<form style="margin-bottom : 20px; margin-right : 50px;" class="form-inline pull-right" action="questions.html" method="get">
 					<div class="form-group">
@@ -71,7 +74,7 @@
 		</c:forEach>
 	</table>	
 	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  	Create
+  	Ajouter
 	</button>
 
 
@@ -80,26 +83,33 @@
     		<div class="modal-content">
       			<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        			<h4 class="modal-title" id="myModalLabel">Create question</h4>
+        			<h4 class="modal-title" id="myModalLabel">Ajout Question</h4>
       			</div>
-      			<form action="questions.html" method="post">
-      				<div class="modal-body">
+      			
+   				<div class="modal-body">
+   					<form action="questions.html" method="get">
+						<select style="margin-bottom : 20px;" class="form-control" name="matiere"
+							onchange="submit()">
+							<option selected value="0">Matière</option>
+							<c:forEach var="matiere" items="${matieres}">
+								<option value="${matiere.id}">${matiere.libelle}</option>
+							</c:forEach>
+						</select>
+					</form>
+					
+      				<form action="questions.html" method="post">
       					<label>Libellé de la question : </label>
 							
 							<input class="form-control" style="margin-bottom : 20px;" name="question" type="text"/>
 		
-							<select style="margin-bottom : 20px;" class="form-control" name="matiere">
-								<option selected value="0">Matière</option>
-								<c:forEach var="matiere" items="${matieres}">
-									<option value="${matiere.id}">${matiere.libelle}</option>
-								</c:forEach>
-							</select>
-							<select style="margin-bottom : 20px;" class="form-control" name="categorie">
-								<option selected value="0">Catégorie</option>
-								<c:forEach var="categorie" items="${categories}">
-									<option value="${categorie.id}">${categorie.name}</option>
-								</c:forEach>
-							</select>
+							<c:if test="${selectedMatiereId != null && !selectedMatiereId.equals('0')}">
+								<select style="margin-bottom : 20px;" class="form-control" name="categorie">
+									<option selected value="0">Catégorie</option>
+									<c:forEach var="categorie" items="${categories}">
+										<option value="${categorie.id}">${categorie.name}</option>
+									</c:forEach>
+								</select>
+							</c:if>
 		
 							<label style="margin-bottom : 10px;">Réponses :</label>
    					 		<div style="margin-bottom : 5px;" class="input-group">
@@ -126,13 +136,14 @@
       							</span>
     							<input name="response4" type="text" class="form-control" aria-label="...">
     						</div>
-      				</div>
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="submit" class="btn btn-primary" >Save</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        				<button type="submit" class="btn btn-primary" >Enregistrer</button>
       				</div>
-      			</form>
-    		</div>
+   				
+   			</form>
+  		</div>
+  		</div>
   		</div>
 	</div>
 </div>

@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,7 +26,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 	private String urlQuestions;
 	private List<Categorie> categories;
 	
-	private Categorie selectedCategorie;
+	private String selectedMatiereId;
 	
 	@Override
 	public void init() throws ServletException {
@@ -34,7 +34,6 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 		
 		urlQuestions = getInitParameter("urlQuestions");
 	}
-
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -52,7 +51,6 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 		
 		List<Reponse> responses = new ArrayList<Reponse>();
 		
-
 		for(int i = 0; i < responses.size(); i++){
 			Reponse r = generateReponse(stringResponses.get(i), String.valueOf(i).equals(rightResponse));
 			responses.add(r);
@@ -61,8 +59,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 				Transaction t = HibernateUtil.currentSession().beginTransaction();
 				HibernateUtil.currentSession().saveOrUpdate(r);
 				t.commit();
-			} catch (HibernateException e) {
-			}
+			} catch (HibernateException e) {}
 		}
 		
 		Categorie categorie = null;
@@ -91,9 +88,10 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		String selectedCategorieId = req.getParameter("categorie");
-		String selectedMatiereId = req.getParameter("matiere");
+		if(req.getParameter("matiere") != null)
+			selectedMatiereId = req.getParameter("matiere");
 		
 		if(selectedCategorieId == null || selectedCategorieId.isEmpty())
 			selectedCategorieId = "0";
@@ -102,27 +100,27 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 			selectedMatiereId = "0";
 		
 		List<Matiere> matieres = null;
-		
-		if(selectedCategorieId == null || selectedCategorieId.isEmpty())
-			selectedCategorieId = "0";
-
 		categories = null;
 		List<Question> questions = null;
 		
 		String questionQuery = "from Question";
-		if(!selectedCategorieId.equals("0"))
-			questionQuery += " where Categorie_ID = " + selectedCategorieId;
+		String categoryQuery = "from Categorie";
+		
+		if(!selectedMatiereId.equals("0"))
+			categoryQuery += " where Matiere_ID = " + selectedMatiereId;
 		
 		try {
 			
 			matieres = HibernateUtil.currentSession().find("from Matiere");
-			
-			if(!selectedMatiereId.equals("0"))
-				categories = HibernateUtil.currentSession().find("from Categorie where Matiere_ID = " + selectedMatiereId);
-			//TODO ALLOU A WAK BAR
-			categories = HibernateUtil.currentSession().find("from Categorie");
+			categories = HibernateUtil.currentSession().find(categoryQuery);
 
-			questions = HibernateUtil.currentSession().find(questionQuery);
+			if(!selectedCategorieId.equals("0")){
+				questionQuery += " where Categorie_ID = " + selectedCategorieId;
+				questions = HibernateUtil.currentSession().find(questionQuery);
+			} else if(!selectedMatiereId.equals("0"))
+				questions = retrieveQuestions(selectedMatiereId);
+			else
+				questions = HibernateUtil.currentSession().find(questionQuery);
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
@@ -140,9 +138,31 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
-		
+		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 	}
 	
+	private List<Question> retrieveQuestions(String matiereId){
+		List<Question> questions = new ArrayList<Question>();
+		
+		Matiere selectedMatiere = null;
+		
+		try {
+			List<Matiere> matieres = HibernateUtil.currentSession().find("from Matiere WHERE id = " + matiereId);
+			if(matieres != null && matieres.size() > 0)
+				selectedMatiere = matieres.get(0);
+		} catch (HibernateException e) {}
+		
+		if(selectedMatiere != null){
+			Set<Categorie> categories = (Set<Categorie>) selectedMatiere.getCategorieSet();
+			
+			for(Categorie c : categories){
+				Set<Question> q = (Set<Question>) c.getQuestionSet();
+				if(q != null)
+					questions.addAll(q);
+			}
+		}
+		
+		return questions;
+	}
 
 }

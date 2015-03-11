@@ -115,6 +115,9 @@ public abstract class BasePromo  implements Serializable {
 	}
 	
 	public int getUtilisateurCount(){
+		if(this._utilisateurSet == null)
+			return 0;
+		
 		return this._utilisateurSet.size();
 	}
 	

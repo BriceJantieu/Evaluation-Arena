@@ -47,7 +47,7 @@
 				</c:forEach>
 			</table>
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  	Create
+  	Ajouter
 	</button>
 
 
@@ -56,7 +56,7 @@
     		<div class="modal-content">
       			<div class="modal-header">
         			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        			<h4 class="modal-title" id="myModalLabel">Create category</h4>
+        			<h4 class="modal-title" id="myModalLabel">Ajout catégorie</h4>
       			</div>
       			<form action="categories.html" method="post">
       				<div class="modal-body">
@@ -72,8 +72,8 @@
 						</div>
       				</div>
       				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="submit" class="btn btn-primary" >Save</button>
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        				<button type="submit" class="btn btn-primary" >Enregistrer</button>
       				</div>
       			</form>
     		</div>
