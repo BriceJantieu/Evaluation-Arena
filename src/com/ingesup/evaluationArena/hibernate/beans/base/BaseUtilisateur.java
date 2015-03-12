@@ -48,8 +48,8 @@ public abstract class BaseUtilisateur  implements Serializable {
 	private com.ingesup.evaluationArena.hibernate.beans.Promo _promo;
 
 	// collections
+	private java.util.Set _examenUtilisateurSet;
 	private java.util.Set _utilisateurQuestionReponseSet;
-	private java.util.Set _exmanenUtilisateurSet;
 
 
 	// constructors
@@ -266,6 +266,28 @@ public abstract class BaseUtilisateur  implements Serializable {
 
 
 	/**
+	 * Return the value associated with the column: ExamenUtilisateurSet
+	 */
+	public java.util.Set getExamenUtilisateurSet () {
+		return this._examenUtilisateurSet;
+	}
+
+	/**
+	 * Set the value related to the column: ExamenUtilisateurSet
+	 * @param _examenUtilisateurSet the ExamenUtilisateurSet value
+	 */
+	public void setExamenUtilisateurSet (java.util.Set _examenUtilisateurSet) {
+		this._examenUtilisateurSet = _examenUtilisateurSet;
+	}
+	
+	public void addToExamenUtilisateurSet (Object obj) {
+		if (null == this._examenUtilisateurSet) this._examenUtilisateurSet = new java.util.HashSet();
+		this._examenUtilisateurSet.add(obj);
+	}
+
+
+
+	/**
 	 * Return the value associated with the column: UtilisateurQuestionReponseSet
 	 */
 	public java.util.Set getUtilisateurQuestionReponseSet () {
@@ -283,28 +305,6 @@ public abstract class BaseUtilisateur  implements Serializable {
 	public void addToUtilisateurQuestionReponseSet (Object obj) {
 		if (null == this._utilisateurQuestionReponseSet) this._utilisateurQuestionReponseSet = new java.util.HashSet();
 		this._utilisateurQuestionReponseSet.add(obj);
-	}
-
-
-
-	/**
-	 * Return the value associated with the column: ExmanenUtilisateurSet
-	 */
-	public java.util.Set getExmanenUtilisateurSet () {
-		return this._exmanenUtilisateurSet;
-	}
-
-	/**
-	 * Set the value related to the column: ExmanenUtilisateurSet
-	 * @param _exmanenUtilisateurSet the ExmanenUtilisateurSet value
-	 */
-	public void setExmanenUtilisateurSet (java.util.Set _exmanenUtilisateurSet) {
-		this._exmanenUtilisateurSet = _exmanenUtilisateurSet;
-	}
-	
-	public void addToExmanenUtilisateurSet (Object obj) {
-		if (null == this._exmanenUtilisateurSet) this._exmanenUtilisateurSet = new java.util.HashSet();
-		this._exmanenUtilisateurSet.add(obj);
 	}
 
 

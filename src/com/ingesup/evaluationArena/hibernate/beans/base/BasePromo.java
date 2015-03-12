@@ -106,19 +106,19 @@ public abstract class BasePromo  implements Serializable {
 		return this._utilisateurSet;
 	}
 
+	public int getUtilisateurCount(){
+		if(this._utilisateurSet != null)
+			return this._utilisateurSet.size();
+		
+		return 0;
+	}
+	
 	/**
 	 * Set the value related to the column: UtilisateurSet
 	 * @param _utilisateurSet the UtilisateurSet value
 	 */
 	public void setUtilisateurSet (java.util.Set _utilisateurSet) {
 		this._utilisateurSet = _utilisateurSet;
-	}
-	
-	public int getUtilisateurCount(){
-		if(this._utilisateurSet == null)
-			return 0;
-		
-		return this._utilisateurSet.size();
 	}
 	
 	public void addToUtilisateurSet (Object obj) {

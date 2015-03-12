@@ -40,7 +40,7 @@ public abstract class BaseExamen  implements Serializable {
 	// collections
 	private java.util.Set _examenQuestionSet;
 	private java.util.Set _examenPromoSet;
-	private java.util.Set _exmanenUtilisateurSet;
+	private java.util.Set _examenUtilisateurSet;
 
 
 	// constructors
@@ -209,23 +209,23 @@ public abstract class BaseExamen  implements Serializable {
 
 
 	/**
-	 * Return the value associated with the column: ExmanenUtilisateurSet
+	 * Return the value associated with the column: ExamenUtilisateurSet
 	 */
-	public java.util.Set getExmanenUtilisateurSet () {
-		return this._exmanenUtilisateurSet;
+	public java.util.Set getExamenUtilisateurSet () {
+		return this._examenUtilisateurSet;
 	}
 
 	/**
-	 * Set the value related to the column: ExmanenUtilisateurSet
-	 * @param _exmanenUtilisateurSet the ExmanenUtilisateurSet value
+	 * Set the value related to the column: ExamenUtilisateurSet
+	 * @param _examenUtilisateurSet the ExamenUtilisateurSet value
 	 */
-	public void setExmanenUtilisateurSet (java.util.Set _exmanenUtilisateurSet) {
-		this._exmanenUtilisateurSet = _exmanenUtilisateurSet;
+	public void setExamenUtilisateurSet (java.util.Set _examenUtilisateurSet) {
+		this._examenUtilisateurSet = _examenUtilisateurSet;
 	}
 	
-	public void addToExmanenUtilisateurSet (Object obj) {
-		if (null == this._exmanenUtilisateurSet) this._exmanenUtilisateurSet = new java.util.HashSet();
-		this._exmanenUtilisateurSet.add(obj);
+	public void addToExamenUtilisateurSet (Object obj) {
+		if (null == this._examenUtilisateurSet) this._examenUtilisateurSet = new java.util.HashSet();
+		this._examenUtilisateurSet.add(obj);
 	}
 
 

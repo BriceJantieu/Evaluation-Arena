@@ -4,14 +4,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>Connexion</title>
 </head>
  <script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
 <body>
 <div class="container">
 	<div class="col-md-offset-5 col-md-3">
       <form class="form-signin" action="login.html" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Connexion</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
         <label for="inputPassword" class="sr-only">Password</label>

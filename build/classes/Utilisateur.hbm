@@ -76,13 +76,13 @@
 		>
 			<column name="Promo_ID" />
 		</many-to-one>
+		<set inverse="true" name="ExamenUtilisateurSet">
+			<key column="Utilisateur_ID" />
+			<one-to-many class="ExamenUtilisateur" />
+		</set>
 		<set inverse="true" name="UtilisateurQuestionReponseSet">
 			<key column="Utilisateur_ID" />
 			<one-to-many class="UtilisateurQuestionReponse" />
-		</set>
-		<set inverse="true" name="ExmanenUtilisateurSet">
-			<key column="Utilisateur_ID" />
-			<one-to-many class="ExmanenUtilisateur" />
 		</set>
 	</class>
 </hibernate-mapping>

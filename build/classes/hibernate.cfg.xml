@@ -15,9 +15,9 @@
 		<property name="hibernate.connection.username">Eliott</property>
 		<property name="hibernate.connection.password">azerty</property>
 		<!-- property name="hibernate.connection.pool_size"></property -->
-		<!-- dialect for MySQL -->
+		<!-- dialect for DB2 -->
 		<property name="dialect">
-			net.sf.hibernate.dialect.MySQLDialect
+			net.sf.hibernate.dialect.DB2Dialect
 		</property>
 		<property name="hibernate.show_sql">false</property>
 		<property name="hibernate.use_outer_join">true</property>
@@ -29,7 +29,6 @@
 		</property>
 		<mapping resource="ExamenPromo.hbm" />
 		<mapping resource="Utilisateur.hbm" />
-		<mapping resource="ExmanenUtilisateur.hbm" />
 		<mapping resource="UtilisateurQuestionReponse.hbm" />
 		<mapping resource="Question.hbm" />
 		<mapping resource="Role.hbm" />
@@ -39,5 +38,6 @@
 		<mapping resource="Reponse.hbm" />
 		<mapping resource="Examen.hbm" />
 		<mapping resource="Promo.hbm" />
+		<mapping resource="ExamenUtilisateur.hbm" />
 	</session-factory>
 </hibernate-configuration>

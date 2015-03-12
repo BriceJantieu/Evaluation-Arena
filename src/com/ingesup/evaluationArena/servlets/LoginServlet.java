@@ -4,26 +4,28 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.User;
+
 import net.sf.hibernate.HibernateException;
 
 import com.ingesup.evaluationArena.hibernate.beans.Utilisateur;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
+import com.ingesup.evaluationArena.tools.UserRole;
 
-public class HomeServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	
-	private String urlHome;
+	private String urlLogin;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
-		urlHome = getInitParameter("urlHome");
+		urlLogin = getInitParameter("urlLogin");
 	}
 
 	@Override
@@ -47,7 +49,7 @@ public class HomeServlet extends HttpServlet {
 			resp.sendRedirect("/EvaluationArena/");
 		}
 		else
-			getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
+			getServletContext().getRequestDispatcher(urlLogin).forward(req, resp);
 	}
 
 	@Override
@@ -68,20 +70,19 @@ public class HomeServlet extends HttpServlet {
 				String a = e.getMessage();
 			}
 			
-			if(users != null && users.size() > 0)
-			{
+			if(users != null && users.size() > 0) {
+				Utilisateur connectedUser = users.get(0);
+				
 				HttpSession session = req.getSession();
-				session.setAttribute("userID", users.get(0).getId().toString());
-				session.setAttribute("userRole", users.get(0).getRole().getId().toString());
-				resp.sendRedirect("/EvaluationArena/promos.html");
+				session.setAttribute("userID", connectedUser.getId().toString());
+				session.setAttribute("userRole", connectedUser.getRole().getId().toString());
+					
+				resp.sendRedirect("/EvaluationArena/home.html");
 				
-			}
-			else
-				getServletContext().getRequestDispatcher(urlHome).forward(req, resp);
+			} else
+				getServletContext().getRequestDispatcher(urlLogin).forward(req, resp);
 				
-		}
-		else
-		{
+		} else {
 			//logout
 			HttpSession session = req.getSession();
 			session.removeAttribute("userID");

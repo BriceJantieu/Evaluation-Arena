@@ -12,7 +12,7 @@
   </welcome-file-list>
   
   <servlet-mapping>
-    <servlet-name>HomeServlet</servlet-name>
+    <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/index.html</url-pattern>
     <url-pattern>/login.html</url-pattern>
     <url-pattern>/logout.html</url-pattern>
@@ -22,6 +22,12 @@
     <servlet-name>QuestionServlet</servlet-name>
     <url-pattern>/questions.html</url-pattern>
     <url-pattern>/questions</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HomePageServlet</servlet-name>
+    <url-pattern>/home.html</url-pattern>
+    <url-pattern>/home</url-pattern>
   </servlet-mapping>
   
   <servlet-mapping>
@@ -48,7 +54,11 @@
     <url-pattern>/categories</url-pattern>
   </servlet-mapping>
 
-    
+    <servlet-mapping>
+    <servlet-name>ExamenServlet</servlet-name>
+    <url-pattern>/examens.html</url-pattern>
+    <url-pattern>/examens</url-pattern>
+  </servlet-mapping>
   
   <servlet-mapping>
     <servlet-name>CreateQuestionServlet</servlet-name>
@@ -78,11 +88,37 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>com.ingesup.evaluationArena.servlets.HomeServlet</servlet-class>
+    <servlet-name>HomePageServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.HomePageServlet</servlet-class>
     <init-param>
-      <param-name>urlHome</param-name>
-      <param-value>/WEB-INF/views/home.jsp</param-value>
+      <param-name>urlHomePageTeacher</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageTeacher.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>urlHomePageAdmin</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageAdmin.jsp</param-value>
+    </init-param>
+    <init-param>
+      <param-name>urlHomePageStudent</param-name>
+      <param-value>/WEB-INF/views/mainPage/homePageStudent	.jsp</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.LoginServlet</servlet-class>
+    <init-param>
+      <param-name>urlLogin</param-name>
+      <param-value>/WEB-INF/views/login.jsp</param-value>
+    </init-param>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>ExamenServlet</servlet-name>
+    <servlet-class>com.ingesup.evaluationArena.servlets.ExamenServlet</servlet-class>
+    <init-param>
+      <param-name>urlExamens</param-name>
+      <param-value>/WEB-INF/views/examens/list.jsp</param-value>
     </init-param>
   </servlet>
   

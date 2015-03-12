@@ -85,12 +85,9 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 			response.sendRedirect("/EvaluationArena/users");
 		}
 	}
-
-	@Override
-	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		if (roleList == null)
+	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if(roleList == null)
 			try {
 				roleList = HibernateUtil.currentSession().find("from Role");
 			} catch (HibernateException e1) {
@@ -127,10 +124,24 @@ public class UtilisateurServlet extends AuthentificateHttpServlet {
 	}
 
 	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+	
+	
+	}
+
+	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
 
+	}
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		get(req, resp);
 	}
 
 }

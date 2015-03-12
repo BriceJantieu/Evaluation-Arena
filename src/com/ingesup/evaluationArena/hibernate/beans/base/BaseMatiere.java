@@ -119,8 +119,6 @@ public abstract class BaseMatiere  implements Serializable {
 		this._examenSet.add(obj);
 	}
 
-
-
 	/**
 	 * Return the value associated with the column: CategorieSet
 	 */
@@ -128,19 +126,19 @@ public abstract class BaseMatiere  implements Serializable {
 		return this._categorieSet;
 	}
 
+	public int getCategoryCount(){
+		if(this._categorieSet != null)
+			return this._categorieSet.size();
+		
+		return 0;
+	}
+	
 	/**
 	 * Set the value related to the column: CategorieSet
 	 * @param _categorieSet the CategorieSet value
 	 */
 	public void setCategorieSet (java.util.Set _categorieSet) {
 		this._categorieSet = _categorieSet;
-	}
-	
-	public int getCategoryCount(){
-		if(this._categorieSet == null)
-			return 0;
-		
-		return this._categorieSet.size();
 	}
 	
 	public void addToCategorieSet (Object obj) {

@@ -49,6 +49,48 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 		urlCreateExamen = getInitParameter("urlCreateExamen");
 	}
 	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
+		List<Matiere> matieres = null;
+		List<Question> questions = null;
+		promos = null;
+		selectedMatiereId = req.getParameter("matiere");
+		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
+			selectedMatiereId = "0";
+		
+		String categorieQuery = "from Categorie";
+		if(!selectedMatiereId.equals("0"))
+			categorieQuery += " where Matiere_ID = " + selectedMatiereId;
+		
+		try {
+			matieres = HibernateUtil.currentSession().find("from Matiere");
+			if (!selectedMatiereId.equals("0"))
+			{
+				Matiere matiere = null;
+				for (Matiere m : matieres)
+				{
+					if (m.getId() == Integer.parseInt(selectedMatiereId))
+					{
+						matiere = m;
+					}
+				}
+				if (matiere != null)
+				{
+					questions = retrieveQuestions(matiere);
+				}
+			}
+			promos = HibernateUtil.currentSession().find("from Promo");
+		} catch (HibernateException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		req.setAttribute("matieres", matieres);
+		req.setAttribute("selectedMatiereId", selectedMatiereId);
+		req.setAttribute("questions", questions);
+		req.setAttribute("promos", promos);
+		
+		getServletContext().getRequestDispatcher(urlCreateExamen).forward(req, resp);
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -150,32 +192,7 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
-		List<Matiere> matieres = null;
-		List<Question> questions = null;
-		promos = null;
-		selectedMatiereId = req.getParameter("matiere");
-		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
-			selectedMatiereId = "0";
-		
-		String categorieQuery = "from Categorie";
-		if(!selectedMatiereId.equals("0"))
-			categorieQuery += " where Matiere_ID = " + selectedMatiereId;
-		
-		try {
-			matieres = HibernateUtil.currentSession().find("from Matiere");
-			questions = retrieveQuestions(selectedMatiereId);
-			promos = HibernateUtil.currentSession().find("from Promo");
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		req.setAttribute("matieres", matieres);
-		req.setAttribute("selectedMatiereId", selectedMatiereId);
-		req.setAttribute("questions", questions);
-		req.setAttribute("promos", promos);
-		
-		getServletContext().getRequestDispatcher(urlCreateExamen).forward(req, resp);
+		get(req, resp);
 	}
 
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
@@ -184,24 +201,25 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 		
 	}	
 	
-	private List<Question> retrieveQuestions(String matiereId) throws HibernateException{
-		if(matiereId == null || matiereId.equals("0"))
-			return null;
-		
-		List<Question> questions = HibernateUtil.currentSession().find("from Question");
-		List<Categorie> categories = HibernateUtil.currentSession().find("from Categorie where Matiere_ID = " + matiereId);
+	private List<Question> retrieveQuestions(Matiere m) throws HibernateException{
 	
-		if(categories == null || categories.size() <= 0)
-			return null;
-		
-		List<Question> questionsToReturn = new ArrayList<>();
-		
-		for(Question q : questions){
-			if(q.getCategorie().getId() == categories.get(0).getId())
-				questionsToReturn.add(q);
+		List<Question> questions = new ArrayList<>();
+		for (Object c : m.getCategorieSet())
+		{
+			Categorie categ = (Categorie)c;
+			List<Question> q =  HibernateUtil.currentSession().find("from Question where Categorie_ID = " + categ.getId());
+			questions.addAll(q);
 		}
 		
-		return questionsToReturn;
+		return questions;
+	}
+
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		get(req, resp);
 	}
 
 }

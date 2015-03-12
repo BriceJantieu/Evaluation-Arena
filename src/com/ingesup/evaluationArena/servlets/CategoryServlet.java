@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,9 +26,8 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		
 		urlCategories = getInitParameter("urlCategories");
 	}
-
-	@Override
-	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	
+	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String selectedMatiereId = req.getParameter("matiere");
 		
 		if(selectedMatiereId == null || selectedMatiereId.isEmpty())
@@ -57,6 +55,11 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		req.setAttribute("matieres", matieres);
 		
 		getServletContext().getRequestDispatcher(urlCategories).forward(req, resp);
+	}
+
+	@Override
+	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		get(req, resp);
 	}
 	
 	@Override
@@ -86,8 +89,13 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
-		
+		resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);	
+	}
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException, ServletException {
+		get(req, resp);
 	}	
 
 }

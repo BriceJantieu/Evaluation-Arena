@@ -49,9 +49,9 @@
 			<key column="Examen_ID" />
 			<one-to-many class="ExamenPromo" />
 		</set>
-		<set inverse="true" name="ExmanenUtilisateurSet">
+		<set inverse="true" name="ExamenUtilisateurSet">
 			<key column="Examen_ID" />
-			<one-to-many class="ExmanenUtilisateur" />
+			<one-to-many class="ExamenUtilisateur" />
 		</set>
 	</class>
 </hibernate-mapping>

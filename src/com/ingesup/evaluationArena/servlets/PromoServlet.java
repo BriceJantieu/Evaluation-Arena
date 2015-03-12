@@ -23,20 +23,52 @@ import com.ingesup.evaluationArena.tools.UserRole;
 public class PromoServlet extends AuthentificateHttpServlet {
 
 	private String urlPromos;
-	private String urlHome;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
 		urlPromos = getInitParameter("urlPromos");
-		urlHome = getInitParameter("urlHome");
 	}
 	
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
+		resp.sendRedirect("/EvaluationArena/home");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+
+		String label = req.getParameter("label");
+		
+		Promo p = new Promo();
+		p.setLibelle(label);
+		
+		try {
+			Transaction t = HibernateUtil.currentSession().beginTransaction();
+			HibernateUtil.currentSession().saveOrUpdate(p);
+			t.commit();
+			resp.sendRedirect("/EvaluationArena/promos");
+		} catch (HibernateException ignored) {
+			resp.sendRedirect("EvaluationArena/promos");
+		}
+		
+	}
+
+	@Override
+	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
+	}
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		List<Promo> promos = null;
 		
 		try {
@@ -73,34 +105,6 @@ public class PromoServlet extends AuthentificateHttpServlet {
 		req.setAttribute("users", users);*/
 		
 		getServletContext().getRequestDispatcher(urlPromos).forward(req, resp);
-		
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		String label = req.getParameter("label");
-		
-		Promo p = new Promo();
-		p.setLibelle(label);
-		
-		try {
-			Transaction t = HibernateUtil.currentSession().beginTransaction();
-			HibernateUtil.currentSession().saveOrUpdate(p);
-			t.commit();
-			resp.sendRedirect("/EvaluationArena/promos");
-		} catch (HibernateException ignored) {
-			resp.sendRedirect("EvaluationArena/promos");
-		}
-		
-	}
-
-	@Override
-	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
-		
 	}	
 
 }

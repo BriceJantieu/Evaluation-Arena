@@ -27,6 +27,10 @@ public class CreateMatiereServlet extends AuthentificateHttpServlet {
 		urlCreateMatiere = getInitParameter("urlCreateMatiere");
 	}
 	
+	private void get(HttpServletRequest req, HttpServletResponse resp)
+	{
+		
+	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -56,6 +60,14 @@ public class CreateMatiereServlet extends AuthentificateHttpServlet {
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 			resp.sendRedirect(ConstantURL.DEFAULT_REDIRECT_STUDENT);
+		
+	}
+
+
+	@Override
+	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
+			throws IOException {
+		// TODO Auto-generated method stub
 		
 	}	
 
