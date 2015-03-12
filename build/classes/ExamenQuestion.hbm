@@ -5,31 +5,33 @@
 
 <hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
 	<class name="ExamenQuestion" table="Examen_Question">
-		<composite-id class="ExamenQuestionPK" name="Id">
-			<key-many-to-one
-				class="Examen"
-				column="Examen_ID"
-				name="Examen"
-			 />
-			<key-many-to-one
-				class="Question"
-				column="Question_ID"
-				name="Question"
-			 />
-		</composite-id>
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
 		<property
-			column="Weight"
+			column="Question_Order"
 			length="10"
-			name="Weight"
+			name="QuestionOrder"
 			not-null="true"
 			type="integer"
 		 />
-		<property
-			column="Order"
-			length="10"
-			name="Order"
+		<many-to-one
+			class="Examen"
+			name="Examen"
 			not-null="true"
-			type="integer"
-		 />
+		>
+			<column name="Examen_ID" />
+		</many-to-one>
+		<many-to-one
+			class="Question"
+			name="Question"
+			not-null="true"
+		>
+			<column name="Question_ID" />
+		</many-to-one>
 	</class>
 </hibernate-mapping>

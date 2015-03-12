@@ -7,31 +7,32 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<title>Create examen</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
  		<script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
+ 		<script type="text/javascript">
+			jQuery(function($){
+				var $question = $('#questions1'), count = 1;
+				var $promo = $('#promo1'), count = 1;
+				
+				$('#addquestion').click(function(e){
+					e.preventDefault();
+					var idname = 'questions' + (++count);
+					$question.parent().append($question.clone().attr({id: idname, name: idname}));
+				});
+				
+				$('#addpromo').click(function(e){
+					e.preventDefault();
+					var idname = 'promo' + (++count);
+					$promo.parent().append($promo.clone().attr({id: idname, name: idname}));
+				});
+	
+			});
+</script>
 	</head>
 <body>
 	<%@ include file="../Menu/menu.jsp" %>
-<!--<div class="container">
-	<form action="create" method="post">
-		Nom de l'examen
-		<input name="name" type="text"/>
-		Matière
-		<select name="matiere"
-			onchange="submit()">
-	
- <div class="col-md-offset-4 col-md-8 row">
-  <h2>Create examen</h2>
-  <form class="form-horizontal" action="create" method="post" role="form">
-    <div class="form-group">
-      <label class="control-label col-md-3" for="email">Name of examen :</label>
-      <div class="col-md-3">
-        <input type="text" class="form-control" name="name" placeholder="Enter name">
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-md-3" for="pwd">Matter :</label>
-      <div class="col-md-3">          
-        <select class="form-control" name="matiere">
+	<form style="margin-bottom : 50px;" action="" method="GET">     
+        <select class="form-control" name="matiere" onchange="submit()">
 			<option selected value="0">Matière</option>
 			<c:forEach var="matiere" items="${matieres}">
 				<c:if test="${matiere.id == selectedMatiereId}">
@@ -43,41 +44,37 @@
 				</c:if>
 			</c:forEach>
 		</select>
-		</div>
-		</div>
-	</form> -->
-	<form action="create" method="post">
-		Nom de l'examen
-		<input name="name" type="text"/>
-		
-		Matière
-		<select name="matieres">
-			<c:forEach var="matiere" items="${matieres}">
-				<c:if test="${matiere.id == selectedMatiereId}">
-					<option selected="selected" value="${matiere.id}">${matiere.libelle}</option>
-				</c:if>
+	</form> 
 	
-				<c:if test="${matiere.id != selectedMatiereId}">
-					<option value="${matiere.id}">${matiere.libelle}</option>
-				</c:if>
-			</c:forEach>
-		</select>
+	
+	
+	<form action="create" method="post">
+		<label style="margin-bottom : 5px;">Nom de l'examen</label>
+		<input style="margin-bottom : 20px;" class="form-control" name="name" type="text"/>
+	
 		
-		<br/>
-		Questions
-		<select multiple name="questions">
-			<c:forEach var="question" items="${questions}">
-				<option value="${question.id}">${question.content}</option>
-			</c:forEach>
-		</select>
+		<label style="margin-bottom : 5px;">Questions</label>
+		<div style="margin-bottom : 20px;" id="questions">
+			<select style="margin-bottom : 10px;" class="form-control" name="questions1" id="questions1">
+				<option id="0" value="0">Select question</option>
+				<c:forEach var="question" items="${questions}">
+					<option value="${question.id}">${question.content}</option>
+				</c:forEach>
+			</select>
+		</div>
+		<a style="margin-bottom : 20px;" id="addquestion" href="#">Add question</a>
 		
-		<br/>
-		Promos
-		<select multiple name="promos">
-			<c:forEach var="promo" items="${promos}">
-				<option value="${promo.id}">${promo.libelle}</option>
-			</c:forEach>
-		</select>
+		<label style="margin-bottom : 5px;">Promos</label>
+		<div style="margin-bottom : 20px;" id="promos">
+			<select style="margin-bottom : 10px;" class="form-control" name="promo1" id="promo1">
+				<option id="0" value="0">Select promo</option>
+				<c:forEach var="promo" items="${promos}">
+					<option value="${promo.id}">${promo.libelle}</option>
+				</c:forEach>
+			</select>
+		</div>
+		
+		<a style="margin-bottom : 20px;" id="addpromo" href="#">Add promo</a>
     <div class="form-group">        
       <div class="">
         <button type="submit" class="col-md-3 btn btn-primary">Save</button>

@@ -37,5 +37,6 @@ public class Reponse extends BaseReponse {
 			_isValid,
 			_content);
 	}
+
 /*[CONSTRUCTOR MARKER END]*/
 }

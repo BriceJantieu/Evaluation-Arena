@@ -33,5 +33,6 @@ public class ExamenPromo extends BaseExamenPromo {
 			_promo,
 			_examen);
 	}
+
 /*[CONSTRUCTOR MARKER END]*/
 }

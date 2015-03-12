@@ -27,12 +27,9 @@ public class CategoryServlet extends AuthentificateHttpServlet {
 		
 		urlCategories = getInitParameter("urlCategories");
 	}
-	
-
 
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String selectedMatiereId = req.getParameter("matiere");
 		
 		if(selectedMatiereId == null || selectedMatiereId.isEmpty())

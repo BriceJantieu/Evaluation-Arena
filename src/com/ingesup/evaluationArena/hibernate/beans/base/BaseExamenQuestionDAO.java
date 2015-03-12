@@ -30,17 +30,17 @@ public abstract class BaseExamenQuestionDAO extends com.ingesup.evaluationArena.
 		return com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion.class;
 	}
 	
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion load(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK key)
+	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion load(java.lang.Integer key)
 		throws net.sf.hibernate.HibernateException {
 		return (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion) load(getReferenceClass(), key);
 	}
 
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion load(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK key, Session s)
+	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion load(java.lang.Integer key, Session s)
 		throws net.sf.hibernate.HibernateException {
 		return (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion) load(getReferenceClass(), key, s);
 	}
 
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion loadInitialize(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK key, Session s) 
+	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion loadInitialize(java.lang.Integer key, Session s) 
 			throws net.sf.hibernate.HibernateException { 
 		com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion obj = load(key, s); 
 		if (!Hibernate.isInitialized(obj)) {
@@ -55,9 +55,9 @@ public abstract class BaseExamenQuestionDAO extends com.ingesup.evaluationArena.
 	 * @param examenQuestion a transient instance of a persistent class 
 	 * @return the class identifier
 	 */
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK save(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion examenQuestion)
+	public java.lang.Integer save(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion examenQuestion)
 		throws net.sf.hibernate.HibernateException {
-		return (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK) super.save(examenQuestion);
+		return (java.lang.Integer) super.save(examenQuestion);
 	}
 
 	/**
@@ -68,9 +68,9 @@ public abstract class BaseExamenQuestionDAO extends com.ingesup.evaluationArena.
 	 * @param s the Session
 	 * @return the class identifier
 	 */
-	public com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK save(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion examenQuestion, Session s)
+	public java.lang.Integer save(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestion examenQuestion, Session s)
 		throws net.sf.hibernate.HibernateException {
-		return (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK) super.save(examenQuestion, s);
+		return (java.lang.Integer) super.save(examenQuestion, s);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public abstract class BaseExamenQuestionDAO extends com.ingesup.evaluationArena.
 	 * Session or a transient instance with an identifier associated with existing persistent state. 
 	 * @param id the instance ID to be removed
 	 */
-	public void delete(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK id)
+	public void delete(java.lang.Integer id)
 		throws net.sf.hibernate.HibernateException {
 		super.delete(load(id));
 	}
@@ -136,7 +136,7 @@ public abstract class BaseExamenQuestionDAO extends com.ingesup.evaluationArena.
 	 * @param id the instance ID to be removed
 	 * @param s the Session
 	 */
-	public void delete(com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK id, Session s)
+	public void delete(java.lang.Integer id, Session s)
 		throws net.sf.hibernate.HibernateException {
 		super.delete(load(id, s), s);
 	}

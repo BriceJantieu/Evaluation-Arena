@@ -1,3 +1,21 @@
+<<<<<<< HEAD
 /HibernateUtil.class
 /com
 /testUser.class
+=======
+/com
+/hibernate.cfg.xml
+/Categorie.hbm
+/Examen.hbm
+/ExamenPromo.hbm
+/ExamenQuestion.hbm
+/ExmanenUtilisateur.hbm
+/Matiere.hbm
+/Promo.hbm
+/Question.hbm
+/Reponse.hbm
+/Role.hbm
+/Utilisateur.hbm
+/UtilisateurQuestionReponse.hbm
+/TestTable.hbm
+>>>>>>> df854c083fd7f7c9b9575e90e1d649847bf08cb9

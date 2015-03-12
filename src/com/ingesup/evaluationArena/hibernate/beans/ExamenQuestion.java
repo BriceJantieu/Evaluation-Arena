@@ -16,7 +16,7 @@ public class ExamenQuestion extends BaseExamenQuestion {
 	/**
 	 * Constructor for primary key
 	 */
-	public ExamenQuestion (com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id) {
+	public ExamenQuestion (java.lang.Integer _id) {
 		super(_id);
 	}
 
@@ -24,14 +24,16 @@ public class ExamenQuestion extends BaseExamenQuestion {
 	 * Constructor for required fields
 	 */
 	public ExamenQuestion (
-		com.ingesup.evaluationArena.hibernate.beans.ExamenQuestionPK _id,
-		java.lang.Integer _weight,
-		java.lang.Integer _order) {
+		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Examen _examen,
+		com.ingesup.evaluationArena.hibernate.beans.Question _question,
+		java.lang.Integer _questionOrder) {
 
 		super (
 			_id,
-			_weight,
-			_order);
+			_examen,
+			_question,
+			_questionOrder);
 	}
 
 /*[CONSTRUCTOR MARKER END]*/

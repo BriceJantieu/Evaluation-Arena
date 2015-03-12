@@ -1,7 +1,11 @@
-EnumExclude=Categorie,Matiere,Role,Promo
+EnumExclude=Role,Matiere,Categorie,Promo
 package=com.ingesup.evaluationArena.hibernate.beans
 databaseUrl=jdbc:mysql://176.31.251.101:3306/EvaluationArena
 driver=com.mysql.jdbc.Driver
 EnumInclude=
 username=Eliott
+<<<<<<< HEAD
 ConfigurationFile=/Evaluation-Arena/src/hibernate.cfg.xml
+=======
+ConfigurationFile=/EvaluationArena/src/hibernate.cfg.xml
+>>>>>>> df854c083fd7f7c9b9575e90e1d649847bf08cb9

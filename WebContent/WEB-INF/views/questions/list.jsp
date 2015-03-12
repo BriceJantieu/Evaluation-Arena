@@ -67,6 +67,7 @@
 				<th>Nom</th>
 				<th>Matière</th>
 				<th>Catégorie</th>
+				<th>Réponses</th>
 			</tr>
 			<c:forEach var="question" items="${questions}">
 				<tr>
@@ -74,6 +75,7 @@
 					<td>${question.content}</td>
 					<td>${question.categorie.matiere.libelle}</td>
 					<td>${question.categorie.name}</td>
+					<td>${question.getReponseList()}</td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -104,7 +106,7 @@
 								name="categorie">
 								<option selected value="0">Catégorie</option>
 								<c:forEach var="categorie" items="${allCategories}">
-									<option value="${categorie.id}">${categorie.name} + " - " + ${categorie.matiere.libelle}</option>
+									<option value="${categorie.id}">${categorie.name} - ${categorie.matiere.libelle}</option>
 								</c:forEach>
 							</select>
 
@@ -112,24 +114,28 @@
 							<div style="margin-bottom: 5px;" class="input-group">
 								<span class="input-group-addon"> <input
 									name="rightResponse" type="radio" placeholder="réponse 1"
+									value="0"
 									aria-label="reponse 1">
 								</span> <input name="response1" type="text" class="form-control"
 									aria-label="...">
 							</div>
 							<div style="margin-bottom: 5px;" class="input-group">
 								<span class="input-group-addon"> <input
+								value="1"
 									name="rightResponse" type="radio" aria-label="...">
 								</span> <input name="response2" type="text" class="form-control"
 									aria-label="...">
 							</div>
 							<div style="margin-bottom: 5px;" class="input-group">
 								<span class="input-group-addon"> <input
+									value="2"
 									name="rightResponse" type="radio" aria-label="...">
 								</span> <input name="response3" type="text" class="form-control"
 									aria-label="...">
 							</div>
 							<div style="margin-bottom: 5px;" class="input-group">
 								<span class="input-group-addon"> <input
+									value="3"
 									name="rightResponse" type="radio" aria-label="...">
 								</span> <input name="response4" type="text" class="form-control"
 									aria-label="...">
