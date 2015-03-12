@@ -25,6 +25,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 
 	private String urlQuestions;
 	private List<Categorie> categories;
+	private List<Categorie> allCategories;
 	
 	private String selectedMatiereId;
 	
@@ -110,6 +111,8 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 			categoryQuery += " where Matiere_ID = " + selectedMatiereId;
 		
 		try {
+			if(allCategories == null)
+				allCategories = HibernateUtil.currentSession().find("from Categorie");
 			
 			matieres = HibernateUtil.currentSession().find("from Matiere");
 			categories = HibernateUtil.currentSession().find(categoryQuery);
@@ -121,6 +124,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 				questions = retrieveQuestions(selectedMatiereId);
 			else
 				questions = HibernateUtil.currentSession().find(questionQuery);
+			
 		} catch (HibernateException e) {
 			System.out.println(e.getMessage());
 		}
@@ -128,6 +132,7 @@ public class QuestionServlet extends AuthentificateHttpServlet {
 		req.setAttribute("selectedCategorieId", selectedCategorieId);
 		req.setAttribute("selectedMatiereId", selectedMatiereId);
 		req.setAttribute("categories", categories);
+		req.setAttribute("allCategories", allCategories);
 		req.setAttribute("questions", questions);
 		req.setAttribute("matieres", matieres);
 		
