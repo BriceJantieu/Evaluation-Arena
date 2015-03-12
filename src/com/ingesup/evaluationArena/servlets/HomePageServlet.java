@@ -31,6 +31,7 @@ public class HomePageServlet extends AuthentificateHttpServlet {
 		urlHomePageStudent = getInitParameter("urlHomePageStudent");
 		urlHomePageAdmin = getInitParameter("urlHomePageAdmin");
 	}
+	
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -63,7 +64,9 @@ public class HomePageServlet extends AuthentificateHttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 
-	
+		String selectedExamenId = (String) req.getParameter("examenId");		
+		if(selectedExamenId != null && !selectedExamenId.isEmpty())
+			resp.sendRedirect("/EvaluationArena/examens/answer?examenId=" + selectedExamenId);
 	}
 
 	@Override
@@ -72,16 +75,16 @@ public class HomePageServlet extends AuthentificateHttpServlet {
 		
 		HttpSession session = req.getSession();
 		String userID = session.getAttribute("userID").toString();
-		List<ExmanenUtilisateur> examens = null;
+		List<ExmanenUtilisateur> examensUtilisateur = null;
 		
 		try {
-			examens = HibernateUtil.currentSession().find("from ExamenUtilisateur where Utilisateur_ID =" + userID + " and isCompleted = 0");
+			examensUtilisateur = HibernateUtil.currentSession().find("from ExamenUtilisateur where Utilisateur_ID =" + userID + " and isCompleted = 0");
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
 		
-		req.setAttribute("examens", examens);
-		
+		req.setAttribute("examensUtilisateur", examensUtilisateur);
+
 		getServletContext().getRequestDispatcher(urlHomePageStudent).forward(req, resp);
 		
 	}
@@ -91,26 +94,7 @@ public class HomePageServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		HttpSession session = req.getSession();
-		String userID = session.getAttribute("userID").toString();
-		List<ExamenQuestion> examenQ = null;
-		List<Question> questions = new ArrayList<>();
-		try {
-			examenQ = HibernateUtil.currentSession().find("from ExamenQuestion where Examen_ID = 12");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		if (examenQ != null)
-		{
-			for (ExamenQuestion eq : examenQ)
-			{
-				
-				questions.add(eq.getQuestion());
-			}
-		}
-		req.setAttribute("questions", questions);
+
 		getServletContext().getRequestDispatcher(urlHomePageAdmin).forward(req, resp);
 	}	
 
