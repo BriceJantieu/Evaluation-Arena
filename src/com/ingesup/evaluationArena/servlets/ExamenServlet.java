@@ -28,13 +28,6 @@ public class ExamenServlet extends AuthentificateHttpServlet {
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.sendRedirect("/EvaluationArena/home");
 	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-
-		
-	}
 
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)

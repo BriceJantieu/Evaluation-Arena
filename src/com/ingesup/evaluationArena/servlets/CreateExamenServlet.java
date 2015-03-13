@@ -95,15 +95,17 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		
 		if(selectedMatiereId == null || selectedMatiereId.equals("0"))
 			return;
 		
-		//examen = Matiere + Name + CreateBy
-		//examen+question = examen_ID + question_ID + order
-		//examen+users
-		String name = req.getParameter("name");
+
 		HttpSession session = req.getSession();
+		
+		String name = req.getParameter("name");
 		String userID = (String)session.getAttribute("userID");
+		
+
 		List<Promo> lstPromos = new ArrayList<Promo>();
 		Matiere examenMatiere = new Matiere();
 		examenMatiere.setId(Integer.valueOf(selectedMatiereId));
