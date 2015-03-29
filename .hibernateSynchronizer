@@ -5,6 +5,6 @@ ConfigurationFile=/Evaluation-Arena/src/hibernate.cfg.xml
 <<<<<<<=HEAD
 package=com.ingesup.evaluationArena.hibernate.beans
 EnumInclude=
-driver=com.mysql.jdbc.Driver
 EnumExclude=Categorie,Matiere,Role,Promo
+driver=com.mysql.jdbc.Driver
 =======

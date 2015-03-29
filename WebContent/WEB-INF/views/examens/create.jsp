@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Create examen</title>
+<title>Création examen</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>
@@ -42,8 +42,7 @@
 	<%@ include file="../Menu/menu.jsp"%>
 	<div class="container">
 		<div class="col-xs-4 col-xs-offset-4">
-			<H1 style="text-align: center; margin-bottom: 50px;">Create
-				exmen</H1>
+			<H1 style="text-align: center; margin-bottom: 50px;">Création examen</H1>
 			<form style="margin-bottom: 50px;" action="" method="GET">
 				<select class="form-control" name="matiere" onchange="submit()">
 					<option selected value="0">Matière</option>
@@ -60,7 +59,7 @@
 			</form>
 			<c:if
 				test="${selectedMatiereId != null && !selectedMatiereId.equals('0')}">
-				<form action="create" method="post">
+				<form action="" method="POST">
 					<label style="margin-bottom: 5px;">Nom de l'examen</label> <input
 						style="margin-bottom: 20px;" class="form-control" name="name"
 						type="text" /> <label style="margin-bottom: 5px;">Questions</label>
@@ -73,9 +72,8 @@
 							</c:forEach>
 						</select>
 					</div>
-					<a style="margin-bottom: 20px;" id="addquestion" href="#">Add
-						question</a> 
-						</br>
+					<a style="margin-bottom: 20px;" id="addquestion" href="#">Ajout question</a> 
+						<br/>
 						<label style="margin-bottom: 5px;margin-top:20px;">Promos</label>
 					<div style="margin-bottom: 5px;" id="promos">
 						<select style="margin-bottom: 10px;" class="form-control"
@@ -86,12 +84,19 @@
 							</c:forEach>
 						</select>
 					</div>
-
-					<a style="margin-bottom: 20px;" id="addpromo" href="#">Add
-						promo</a>
+					
+					<a style="margin-bottom: 20px;" id="addpromo" href="#">Ajout promo</a>
+					
+					<div style="margin-bottom: 5px;" id="promos">
+						<br/>
+						<label style="margin-bottom: 5px;margin-top:20px;">Date de fin</label>
+						<br/>
+						<input style="margin-bottom: 10px;" class="form-control" type="date" name="date"/>
+					</div>
+		
 					<div class="form-group" style="margin-top: 20px;">
 						<div class="">
-							<button type="submit" class="col-md-3 btn btn-primary">Save</button>
+							<button type="submit" class="col-md-4 btn btn-primary">Ajouter</button>
 						</div>
 					</div>
 				</form>

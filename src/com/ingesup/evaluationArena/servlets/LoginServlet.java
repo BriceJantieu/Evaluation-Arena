@@ -31,14 +31,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// redirection vers la vue associée à l'action
-		//response.sendRedirect("/EvaluationArena/questions/create");
-		//response.sendRedirect("/EvaluationArena/questions.html");
-		//response.sendRedirect("/EvaluationArena/examens/create");
-		//response.sendRedirect("/EvaluationArena/categories/create");
-		//response.sendRedirect("/EvaluationArena/matieres/create");
-		//response.sendRedirect("/EvaluationArena/promos/create");
-		//resp.sendRedirect("/EvaluationArena/promos.html");
+
 		String path = req.getServletPath();
 		if (path.equals("/logout.html"))
 		{

@@ -68,7 +68,7 @@ public class PromoServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		List<Promo> promos = null;
 		
 		try {
@@ -78,31 +78,6 @@ public class PromoServlet extends AuthentificateHttpServlet {
 		}
 		
 		req.setAttribute("promos", promos);
-		
-		/*String selectedPromoId = req.getParameter("promo");
-		
-		if(selectedPromoId == null || selectedPromoId.isEmpty())
-			selectedPromoId = "0";
-		
-		String utilisateurQuery = "from Utilisateur";
-		if(!selectedPromoId.equals("0"))
-			utilisateurQuery += " where Promo_ID = " + selectedPromoId;
-		
-		List<Promo> promos = null;
-		List<Utilisateur> users = null;
-		
-		try {
-			
-			promos = HibernateUtil.currentSession().find("from Promo");
-			users = HibernateUtil.currentSession().find(utilisateurQuery);
-			
-		} catch (HibernateException e) {
-			System.out.println(e.getMessage());
-		}
-
-		req.setAttribute("selectedPromoId", selectedPromoId);
-		req.setAttribute("promos", promos);
-		req.setAttribute("users", users);*/
 		
 		getServletContext().getRequestDispatcher(urlPromos).forward(req, resp);
 	}	

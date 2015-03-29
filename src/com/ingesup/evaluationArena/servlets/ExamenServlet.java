@@ -1,6 +1,8 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.hibernate.HibernateException;
+
+import com.ingesup.evaluationArena.hibernate.beans.ExamenUtilisateur;
 import com.ingesup.evaluationArena.hibernate.beans.ExmanenUtilisateur;
 import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
 import com.ingesup.evaluationArena.tools.HibernateUtil;
@@ -35,13 +39,14 @@ public class ExamenServlet extends AuthentificateHttpServlet {
 		
 		HttpSession session = req.getSession();
 		String userID = session.getAttribute("userID").toString();
-		List<ExmanenUtilisateur> examens = null;
+		List<ExamenUtilisateur> examens = null;
 		
 		try {
 			examens = HibernateUtil.currentSession().find("from ExamenUtilisateur where Utilisateur_ID =" + userID + " and isCompleted = 1");
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
+
 		
 		req.setAttribute("examens", examens);
 

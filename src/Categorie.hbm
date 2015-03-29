@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
 
 <hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
-	<class name="Examen" table="Examen">
+	<class name="Categorie" table="Categorie">
 		<id
 			column="ID"
 			name="Id"
@@ -13,20 +13,12 @@
 			<generator class="vm" />
 		</id>
 		<property
-			column="Available"
-			length="10"
-			name="Available"
-			not-null="false"
-			type="date"
-		 />
-		<property
 			column="Name"
 			length="50"
 			name="Name"
 			not-null="true"
 			type="string"
 		 />
-
 		<many-to-one
 			class="Matiere"
 			name="Matiere"
@@ -34,17 +26,9 @@
 		>
 			<column name="Matiere_ID" />
 		</many-to-one>
-		<set inverse="true" name="ExamenQuestionSet">
-			<key column="Examen_ID" />
-			<one-to-many class="ExamenQuestion" />
-		</set>
-		<set inverse="true" name="ExamenPromoSet">
-			<key column="Examen_ID" />
-			<one-to-many class="ExamenPromo" />
-		</set>
-		<set inverse="true" name="ExamenUtilisateurSet">
-			<key column="Examen_ID" />
-			<one-to-many class="ExamenUtilisateur" />
+		<set inverse="true" name="QuestionSet">
+			<key column="Categorie_ID" />
+			<one-to-many class="Question" />
 		</set>
 	</class>
 </hibernate-mapping>

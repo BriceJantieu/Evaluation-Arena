@@ -1,6 +1,7 @@
 package com.ingesup.evaluationArena.servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
@@ -36,6 +37,7 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 public class CreateExamenServlet extends AuthentificateHttpServlet {
 
 	private String urlCreateExamen;
+	private String urlExamens;
 	
 	//Il faut que ce soit une variable de classe car la matière est dans
 	//un formulaire a part
@@ -47,6 +49,7 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 		super.init();
 		
 		urlCreateExamen = getInitParameter("urlCreateExamen");
+		urlExamens = getInitParameter("urlExamens");
 	}
 	
 	private void get(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -99,22 +102,17 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 		if(selectedMatiereId == null || selectedMatiereId.equals("0"))
 			return;
 		
-
-		HttpSession session = req.getSession();
 		
 		String name = req.getParameter("name");
-		String userID = (String)session.getAttribute("userID");
-		
+		String available = req.getParameter("date");
 
-		List<Promo> lstPromos = new ArrayList<Promo>();
 		Matiere examenMatiere = new Matiere();
 		examenMatiere.setId(Integer.valueOf(selectedMatiereId));
 		
 		Examen examen = new Examen();
 		examen.setName(name);
 		examen.setMatiere(examenMatiere);
-		examen.setCreatedBy(userID);
-		examen.setCreateDate(Calendar.getInstance().getTime());
+		examen.setAvailable(Date.valueOf(available));
 		
 		try {
 			Transaction t = HibernateUtil.currentSession().beginTransaction();
@@ -161,9 +159,10 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 							t.commit();
 							
 						} catch (HibernateException ignored) {}
+						
 						for (Object u : p.getUtilisateurSet())
 						{
-							Utilisateur user = (Utilisateur)u;
+							Utilisateur user = (Utilisateur) u;
 							ExmanenUtilisateur ex = new ExmanenUtilisateur();
 							ex.setExamen(examen);
 							ex.setUtilisateur(user);
@@ -172,7 +171,9 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 								HibernateUtil.currentSession().save(ex);
 								t.commit();
 								
-							} catch (HibernateException ignored) {}
+							} catch (HibernateException e) {
+								e.printStackTrace();
+							}
 							
 						}
 					}
@@ -180,14 +181,8 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 				
 			}
 		}
-		/*ExamenPromo examenPromo = new ExamenPromo();
-		examenPromo.setPromo(promo);
-		
-		Promo promo = new Promo();
-		promo.setId(Integer.valueOf(promos[0]));*/
-		
-		
-		
+
+		getServletContext().getRequestDispatcher(urlExamens).forward(req, resp);
 		
 	}
 

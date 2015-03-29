@@ -18,10 +18,9 @@ import java.io.Serializable;
 public abstract class BaseExamen  implements Serializable {
 
 	public static String PROP_NAME = "Name";
-	public static String PROP_CREATED_BY = "CreatedBy";
+	public static String PROP_AVAILABLE = "Available";
 	public static String PROP_MATIERE = "Matiere";
 	public static String PROP_ID = "Id";
-	public static String PROP_CREATE_DATE = "CreateDate";
 
 
 	private int hashCode = Integer.MIN_VALUE;
@@ -30,9 +29,8 @@ public abstract class BaseExamen  implements Serializable {
 	private java.lang.Integer _id;
 
 	// fields
+	private java.util.Date _available;
 	private java.lang.String _name;
-	private java.lang.String _createdBy;
-	private java.util.Date _createDate;
 
 	// many to one
 	private com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere;
@@ -62,15 +60,11 @@ public abstract class BaseExamen  implements Serializable {
 	public BaseExamen (
 		java.lang.Integer _id,
 		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
-		java.lang.String _name,
-		java.lang.String _createdBy,
-		java.util.Date _createDate) {
+		java.lang.String _name) {
 
 		this.setId(_id);
 		this.setMatiere(_matiere);
 		this.setName(_name);
-		this.setCreatedBy(_createdBy);
-		this.setCreateDate(_createDate);
 		initialize();
 	}
 
@@ -99,6 +93,22 @@ public abstract class BaseExamen  implements Serializable {
 
 
 	/**
+	 * Return the value associated with the column: Available
+	 */
+	public java.util.Date getAvailable () {
+		return _available;
+	}
+
+	/**
+	 * Set the value related to the column: Available
+	 * @param _available the Available value
+	 */
+	public void setAvailable (java.util.Date _available) {
+		this._available = _available;
+	}
+
+
+	/**
 	 * Return the value associated with the column: Name
 	 */
 	public java.lang.String getName () {
@@ -111,38 +121,6 @@ public abstract class BaseExamen  implements Serializable {
 	 */
 	public void setName (java.lang.String _name) {
 		this._name = _name;
-	}
-
-
-	/**
-	 * Return the value associated with the column: CreatedBy
-	 */
-	public java.lang.String getCreatedBy () {
-		return _createdBy;
-	}
-
-	/**
-	 * Set the value related to the column: CreatedBy
-	 * @param _createdBy the CreatedBy value
-	 */
-	public void setCreatedBy (java.lang.String _createdBy) {
-		this._createdBy = _createdBy;
-	}
-
-
-	/**
-	 * Return the value associated with the column: CreateDate
-	 */
-	public java.util.Date getCreateDate () {
-		return _createDate;
-	}
-
-	/**
-	 * Set the value related to the column: CreateDate
-	 * @param _createDate the CreateDate value
-	 */
-	public void setCreateDate (java.util.Date _createDate) {
-		this._createDate = _createDate;
 	}
 
 

@@ -26,17 +26,12 @@ public class Examen extends BaseExamen {
 	public Examen (
 		java.lang.Integer _id,
 		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
-		java.lang.String _name,
-		java.lang.String _createdBy,
-		java.util.Date _createDate) {
+		java.lang.String _name) {
 
 		super (
 			_id,
 			_matiere,
-			_name,
-			_createdBy,
-			_createDate);
+			_name);
 	}
-
 /*[CONSTRUCTOR MARKER END]*/
 }

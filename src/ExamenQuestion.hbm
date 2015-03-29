@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="com.ingesup.evaluationArena.hibernate.beans">
+	<class name="ExamenQuestion" table="Examen_Question">
+		<id
+			column="ID"
+			name="Id"
+			type="integer"
+		>
+			<generator class="vm" />
+		</id>
+		<property
+			column="Question_Order"
+			length="10"
+			name="QuestionOrder"
+			not-null="true"
+			type="integer"
+		 />
+		<many-to-one
+			class="Examen"
+			name="Examen"
+			not-null="true"
+		>
+			<column name="Examen_ID" />
+		</many-to-one>
+		<many-to-one
+			class="Question"
+			name="Question"
+			not-null="true"
+		>
+			<column name="Question_ID" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

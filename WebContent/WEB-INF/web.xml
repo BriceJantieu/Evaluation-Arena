@@ -204,6 +204,10 @@
           <param-name>urlCreateExamen</param-name>
           <param-value>/WEB-INF/views/examens/create.jsp</param-value>
       </init-param>
+      <init-param>
+          <param-name>urlExamens</param-name>
+          <param-value>/EvaluationArena/examens</param-value>
+      </init-param>
   </servlet>
   
   <servlet>

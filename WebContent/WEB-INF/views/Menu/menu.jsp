@@ -9,8 +9,8 @@
    <li><a href='/EvaluationArena/home'>Accueil</a></li>
    <li><a>Examens</a>
       <ul>
-   			<li><a href='/EvaluationArena/examens'>List</a></li>
-   			<li><a href='/EvaluationArena/examens/create'>Create</a></li>
+   			<li><a href='/EvaluationArena/examens'>Liste</a></li>
+   			<li><a href='/EvaluationArena/examens/create'>Création</a></li>
    		</ul>
    </li>
    
