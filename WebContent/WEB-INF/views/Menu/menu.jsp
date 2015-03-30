@@ -7,20 +7,26 @@
 <div id='cssmenu'>
 <ul>
    <li><a href='/EvaluationArena/home'>Accueil</a></li>
+   <c:if test="${userRole != null && userRole.equals('student')}">
+   	<li><a href='/EvaluationArena/examens'>Mes notes</a></li>
+   </c:if>
+   <c:if test="${userRole != null && userRole.equals('admin')}">
+   	<li><a href='/EvaluationArena/promos'>Promos</a></li>
+   	<li><a href='/EvaluationArena/users'>Utilisateurs</a></li>
+   </c:if>
+   
+   <c:if test="${userRole != null && !userRole.equals('student')}">
    <li><a>Examens</a>
       <ul>
    			<li><a href='/EvaluationArena/examens'>Liste</a></li>
    			<li><a href='/EvaluationArena/examens/create'>Création</a></li>
    		</ul>
    </li>
-   
    <li><a href='/EvaluationArena/categories'>Catégories</a></li>
    <li><a href='/EvaluationArena/matieres'>Matières</a></li>
-   <c:if test="${userRole != null && userRole.equals('admin')}">
-   	<li><a href='/EvaluationArena/promos'>Promos</a></li>
-   	<li><a href='/EvaluationArena/users'>Utilisateurs</a></li>
-   </c:if>
    <li><a href='/EvaluationArena/questions'>Questions</a></li>
+   </c:if>
+   
    <li><a href='/EvaluationArena/logout.html'>Déconnexion</a></li>
    
 </ul>

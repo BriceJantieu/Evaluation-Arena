@@ -29,6 +29,7 @@
 					<tr>
 						<td> ${examen.examen.name} </td>
 						<td> ${examen.examen.matiere.libelle} </td>
+						<td> ${examen.result} </td>
 					</tr>
 				</c:forEach>
 			</table>
