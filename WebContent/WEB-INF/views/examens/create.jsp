@@ -75,7 +75,7 @@
 					<a style="margin-bottom: 20px;" id="addquestion" href="#">Ajout question</a> 
 						<br/>
 						<label style="margin-bottom: 5px;margin-top:20px;">Promos</label>
-					<div style="margin-bottom: 5px;" id="promos">
+					<div style="margin-bottom: 5px;" id="promo">
 						<select style="margin-bottom: 10px;" class="form-control"
 							name="promo1" id="promo1">
 							<option id="0" value="0">Select promo</option>
