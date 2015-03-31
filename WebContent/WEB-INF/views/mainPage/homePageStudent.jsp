@@ -22,12 +22,14 @@
 				<tr>
 					<th>Nom</th>
 					<th>Matiere</th>
+					<th>Date limite</th>
 				</tr>
 		
 				<c:forEach var="examenUtilisateur" items="${examensUtilisateur}" >
 					<tr>
 						<td> ${examenUtilisateur.examen.name} </td>
 						<td> ${examenUtilisateur.examen.matiere.libelle} </td>
+						<td> ${examenUtilisateur.examen.available} </td>
 						<td>
 							<form action="" method="post">
 								<input type="hidden" name="examenId" value="${examenUtilisateur.examen.id}"/>
