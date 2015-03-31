@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/EvaluationArena/Ressource/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>List of questions</title>
+<title>Liste des questions</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="/EvaluationArena/Ressource/bootstrap/js/bootstrap.min.js"></script>

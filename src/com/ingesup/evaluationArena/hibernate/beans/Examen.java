@@ -25,11 +25,13 @@ public class Examen extends BaseExamen {
 	 */
 	public Examen (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Utilisateur _teacher,
 		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
 		java.lang.String _name) {
 
 		super (
 			_id,
+			_teacher,
 			_matiere,
 			_name);
 	}

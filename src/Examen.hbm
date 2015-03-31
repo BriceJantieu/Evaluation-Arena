@@ -28,6 +28,13 @@
 		 />
 
 		<many-to-one
+			class="Utilisateur"
+			name="Teacher"
+			not-null="true"
+		>
+			<column name="Teacher_ID" />
+		</many-to-one>
+		<many-to-one
 			class="Matiere"
 			name="Matiere"
 			not-null="true"

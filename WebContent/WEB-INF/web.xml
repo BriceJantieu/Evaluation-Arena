@@ -126,6 +126,11 @@
       <param-name>urlExamens</param-name>
       <param-value>/WEB-INF/views/examens/list.jsp</param-value>
     </init-param>
+    
+    <init-param>
+      <param-name>urlExamensStudent</param-name>
+      <param-value>/WEB-INF/views/examens/listStudent.jsp</param-value>
+    </init-param>
   </servlet>
   
   <servlet>
@@ -134,6 +139,11 @@
     <init-param>
       <param-name>urlAnswerExamen</param-name>
       <param-value>/WEB-INF/views/examens/answer.jsp</param-value>
+    </init-param>
+    
+    <init-param>
+      <param-name>urlExamens</param-name>
+      <param-value>/WEB-INF/views/examens</param-value>
     </init-param>
   </servlet>
   

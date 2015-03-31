@@ -1,1 +1,20 @@
+<<<<<<< HEAD
+/HibernateUtil.class
 /com
+/testUser.class
+=======
+/com
+>>>>>>> b972aa351fb64790ae6ede3d0c987a22cc680f59
+/hibernate.cfg.xml
+/Categorie.hbm
+/Examen.hbm
+/ExamenPromo.hbm
+/ExamenQuestion.hbm
+/ExamenUtilisateur.hbm
+/Matiere.hbm
+/Promo.hbm
+/Question.hbm
+/Reponse.hbm
+/Role.hbm
+/Utilisateur.hbm
+/UtilisateurQuestionReponse.hbm

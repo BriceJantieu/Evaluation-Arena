@@ -48,6 +48,7 @@ public abstract class BaseUtilisateur  implements Serializable {
 	private com.ingesup.evaluationArena.hibernate.beans.Promo _promo;
 
 	// collections
+	private java.util.Set _examenSet;
 	private java.util.Set _examenUtilisateurSet;
 	private java.util.Set _utilisateurQuestionReponseSet;
 
@@ -263,6 +264,28 @@ public abstract class BaseUtilisateur  implements Serializable {
 	public void setPromo (com.ingesup.evaluationArena.hibernate.beans.Promo _promo) {
 		this._promo = _promo;
 	}
+
+
+	/**
+	 * Return the value associated with the column: ExamenSet
+	 */
+	public java.util.Set getExamenSet () {
+		return this._examenSet;
+	}
+
+	/**
+	 * Set the value related to the column: ExamenSet
+	 * @param _examenSet the ExamenSet value
+	 */
+	public void setExamenSet (java.util.Set _examenSet) {
+		this._examenSet = _examenSet;
+	}
+	
+	public void addToExamenSet (Object obj) {
+		if (null == this._examenSet) this._examenSet = new java.util.HashSet();
+		this._examenSet.add(obj);
+	}
+
 
 
 	/**
