@@ -182,7 +182,7 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 			}
 		}
 
-		getServletContext().getRequestDispatcher(urlExamens).forward(req, resp);
+		resp.sendRedirect(urlExamens);
 		
 	}
 

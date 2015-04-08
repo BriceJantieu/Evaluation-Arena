@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import net.sf.hibernate.HibernateException;
 
+import com.ingesup.evaluationArena.hibernate.beans.Examen;
 import com.ingesup.evaluationArena.hibernate.beans.ExamenUtilisateur;
 import com.ingesup.evaluationArena.hibernate.beans.ExmanenUtilisateur;
 import com.ingesup.evaluationArena.tools.AuthentificateHttpServlet;
@@ -20,19 +21,34 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 public class ExamenServlet extends AuthentificateHttpServlet {
 
 	private String urlExamens;
+	private String urlExamensStudent;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
 		urlExamens = getInitParameter("urlExamens");
+		urlExamensStudent = getInitParameter("urlExamensStudent");
 	}
 
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendRedirect("/EvaluationArena/home");
-	}
+		List<Examen> examens = null;
+		HttpSession session = req.getSession();
+		String userID = session.getAttribute("userID").toString();
+		
+		
+		try {
+			examens = HibernateUtil.currentSession().find("from Examen where createdBy=" + userID + "order by Available desc");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("examens", examens);
 
+		getServletContext().getRequestDispatcher(urlExamens).forward(req, resp);	
+	}
+	
 	@Override
 	public void doGetStudent(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
@@ -50,7 +66,7 @@ public class ExamenServlet extends AuthentificateHttpServlet {
 		
 		req.setAttribute("examens", examens);
 
-		getServletContext().getRequestDispatcher(urlExamens).forward(req, resp);
+		getServletContext().getRequestDispatcher(urlExamensStudent).forward(req, resp);
 	}
 
 
@@ -58,7 +74,17 @@ public class ExamenServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-		resp.sendRedirect("/EvaluationArena/home");
+		List<Examen> examens = null;
+		
+		try {
+			examens = HibernateUtil.currentSession().find("from Examen order by Available desc");
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
+		req.setAttribute("examens", examens);
+
+		getServletContext().getRequestDispatcher(urlExamens).forward(req, resp);
 	}	
 
 }

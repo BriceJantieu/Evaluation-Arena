@@ -141,12 +141,6 @@ public abstract class BaseMatiere  implements Serializable {
 		this._categorieSet.add(obj);
 	}
 
-	public int getCategoryCount(){
-		if(_categorieSet == null)
-			return 0;
-		
-		return _categorieSet.size();
-	}
 
 
 	public boolean equals (Object obj) {
