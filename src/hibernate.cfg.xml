@@ -27,17 +27,17 @@
 		<property name="jta.UserTransaction">
 			java:comp/UserTransaction
 		</property>
+		<mapping resource="Categorie.hbm" />
+		<mapping resource="Examen.hbm" />
 		<mapping resource="ExamenPromo.hbm" />
+		<mapping resource="ExamenQuestion.hbm" />
+		<mapping resource="ExamenUtilisateur.hbm" />
+		<mapping resource="Matiere.hbm" />
+		<mapping resource="Promo.hbm" />
+		<mapping resource="Question.hbm" />
+		<mapping resource="Reponse.hbm" />
+		<mapping resource="Role.hbm" />
 		<mapping resource="Utilisateur.hbm" />
 		<mapping resource="UtilisateurQuestionReponse.hbm" />
-		<mapping resource="Question.hbm" />
-		<mapping resource="Role.hbm" />
-		<mapping resource="Matiere.hbm" />
-		<mapping resource="Categorie.hbm" />
-		<mapping resource="ExamenQuestion.hbm" />
-		<mapping resource="Reponse.hbm" />
-		<mapping resource="Examen.hbm" />
-		<mapping resource="Promo.hbm" />
-		<mapping resource="ExamenUtilisateur.hbm" />
 	</session-factory>
 </hibernate-configuration>

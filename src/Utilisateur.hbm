@@ -76,6 +76,10 @@
 		>
 			<column name="Promo_ID" />
 		</many-to-one>
+		<set inverse="true" name="ExamenSet">
+			<key column="Teacher_ID" />
+			<one-to-many class="Examen" />
+		</set>
 		<set inverse="true" name="ExamenUtilisateurSet">
 			<key column="Utilisateur_ID" />
 			<one-to-many class="ExamenUtilisateur" />

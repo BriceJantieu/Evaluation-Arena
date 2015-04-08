@@ -26,6 +26,7 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 public class AnswerExamenServlet extends AuthentificateHttpServlet {
 
 	private String urlAnswerExamen;
+	private String urlExamens;
 	
 	private String examenId;
 	
@@ -36,6 +37,7 @@ public class AnswerExamenServlet extends AuthentificateHttpServlet {
 		super.init();
 		
 		urlAnswerExamen = getInitParameter("urlAnswerExamen");
+		urlExamens = getInitParameter("urlExamens");
 	}
 	
 	@Override
@@ -83,6 +85,8 @@ public class AnswerExamenServlet extends AuthentificateHttpServlet {
 		}
 		
 		notifyExamenCompleted(userId, correctQuestionCount);
+		
+		resp.sendRedirect(urlExamens);
 	}
 
 	private void notifyExamenCompleted(String userId, int correctQuestionCount){

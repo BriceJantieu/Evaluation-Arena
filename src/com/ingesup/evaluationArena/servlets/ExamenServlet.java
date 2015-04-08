@@ -39,7 +39,7 @@ public class ExamenServlet extends AuthentificateHttpServlet {
 		
 		
 		try {
-			examens = HibernateUtil.currentSession().find("from Examen where createdBy=" + userID + "order by Available desc");
+			examens = HibernateUtil.currentSession().find("from Examen where Teacher_ID=" + userID + " order by Available desc");
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

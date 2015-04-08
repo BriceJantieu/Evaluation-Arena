@@ -99,6 +99,10 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
+		List<Examen> examens = null;
+		HttpSession session = req.getSession();
+		String userID = session.getAttribute("userID").toString();
+		
 		if(selectedMatiereId == null || selectedMatiereId.equals("0"))
 			return;
 		
@@ -109,10 +113,14 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 		Matiere examenMatiere = new Matiere();
 		examenMatiere.setId(Integer.valueOf(selectedMatiereId));
 		
+		Utilisateur teacher = new Utilisateur();
+		teacher.setId(Integer.valueOf(userID));
+		
 		Examen examen = new Examen();
 		examen.setName(name);
 		examen.setMatiere(examenMatiere);
 		examen.setAvailable(Date.valueOf(available));
+		examen.setTeacher(teacher);
 		
 		try {
 			Transaction t = HibernateUtil.currentSession().beginTransaction();

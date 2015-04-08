@@ -19,6 +19,7 @@ public abstract class BaseExamen  implements Serializable {
 
 	public static String PROP_NAME = "Name";
 	public static String PROP_AVAILABLE = "Available";
+	public static String PROP_TEACHER = "Teacher";
 	public static String PROP_MATIERE = "Matiere";
 	public static String PROP_ID = "Id";
 
@@ -33,6 +34,7 @@ public abstract class BaseExamen  implements Serializable {
 	private java.lang.String _name;
 
 	// many to one
+	private com.ingesup.evaluationArena.hibernate.beans.Utilisateur _teacher;
 	private com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere;
 
 	// collections
@@ -59,10 +61,12 @@ public abstract class BaseExamen  implements Serializable {
 	 */
 	public BaseExamen (
 		java.lang.Integer _id,
+		com.ingesup.evaluationArena.hibernate.beans.Utilisateur _teacher,
 		com.ingesup.evaluationArena.hibernate.beans.Matiere _matiere,
 		java.lang.String _name) {
 
 		this.setId(_id);
+		this.setTeacher(_teacher);
 		this.setMatiere(_matiere);
 		this.setName(_name);
 		initialize();
@@ -121,6 +125,24 @@ public abstract class BaseExamen  implements Serializable {
 	 */
 	public void setName (java.lang.String _name) {
 		this._name = _name;
+	}
+
+
+	/**
+     * @hibernate.property
+     *  column=Teacher_ID
+	 * not-null=true
+	 */
+	public com.ingesup.evaluationArena.hibernate.beans.Utilisateur getTeacher () {
+		return this._teacher;
+	}
+
+	/**
+	 * Set the value related to the column: Teacher_ID
+	 * @param _teacher the Teacher_ID value
+	 */
+	public void setTeacher (com.ingesup.evaluationArena.hibernate.beans.Utilisateur _teacher) {
+		this._teacher = _teacher;
 	}
 
 
