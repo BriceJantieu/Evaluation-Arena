@@ -40,13 +40,13 @@ public abstract class AuthentificateHttpServlet extends HttpServlet {
 			}
 			else if (isTeacher(userRole))
 			{
-				req.setAttribute("userRole", null);
+				req.setAttribute("userRole", "teacher");
 				doGetTeacher(req, resp);
 			}
 			else
 			{
 
-				req.setAttribute("userRole", null);
+				req.setAttribute("userRole", "student");
 				doGetStudent(req, resp);
 			}
 		}
