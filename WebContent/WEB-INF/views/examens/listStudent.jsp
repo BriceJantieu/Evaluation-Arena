@@ -22,14 +22,14 @@
 				<tr>
 					<th>Nom</th>
 					<th>Matiere</th>
-					<th>Note</th>
+					<th>Date limite</th>
 				</tr>
 		
 				<c:forEach var="examen" items="${examens}" >
 					<tr>
 						<td> ${examen.examen.name} </td>
 						<td> ${examen.examen.matiere.libelle} </td>
-						<td> ${examen.result} </td>
+						<td> ${examen.examen.available} </td>
 					</tr>
 				</c:forEach>
 			</table>

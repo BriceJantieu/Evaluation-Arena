@@ -174,6 +174,7 @@ public class CreateExamenServlet extends AuthentificateHttpServlet {
 							ExmanenUtilisateur ex = new ExmanenUtilisateur();
 							ex.setExamen(examen);
 							ex.setUtilisateur(user);
+							
 							try {
 								Transaction t = HibernateUtil.currentSession().beginTransaction();
 								HibernateUtil.currentSession().save(ex);

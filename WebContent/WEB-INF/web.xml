@@ -97,12 +97,8 @@
     <servlet-name>HomePageServlet</servlet-name>
     <servlet-class>com.ingesup.evaluationArena.servlets.HomePageServlet</servlet-class>
     <init-param>
-      <param-name>urlHomePageTeacher</param-name>
-      <param-value>/WEB-INF/views/mainPage/homePageTeacher.jsp</param-value>
-    </init-param>
-    <init-param>
-      <param-name>urlHomePageAdmin</param-name>
-      <param-value>/WEB-INF/views/mainPage/homePageAdmin.jsp</param-value>
+      <param-name>urlExamens</param-name>
+      <param-value>/EvaluationArena/examens</param-value>
     </init-param>
     <init-param>
       <param-name>urlHomePageStudent</param-name>
@@ -143,7 +139,7 @@
     
     <init-param>
       <param-name>urlExamens</param-name>
-      <param-value>/WEB-INF/views/examens</param-value>
+      <param-value>/WEB-INF/views/examens/list.jsp</param-value>
     </init-param>
   </servlet>
   

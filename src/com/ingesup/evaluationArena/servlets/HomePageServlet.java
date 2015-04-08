@@ -21,45 +21,20 @@ import com.ingesup.evaluationArena.tools.HibernateUtil;
 
 public class HomePageServlet extends AuthentificateHttpServlet {
 
-	private String urlHomePageTeacher;
-	private String urlHomePageAdmin;
+	private String urlExamens;
 	private String urlHomePageStudent;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		
-		urlHomePageTeacher = getInitParameter("urlHomePageTeacher");
+		urlExamens = getInitParameter("urlExamens");
 		urlHomePageStudent = getInitParameter("urlHomePageStudent");
-		urlHomePageAdmin = getInitParameter("urlHomePageAdmin");
 	}
 	
 	@Override
 	public void doGetTeacher(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = req.getSession();
-		String userID = session.getAttribute("userID").toString();
-		List<ExamenQuestion> examenQ = null;
-		List<Question> questions = new ArrayList<>();
-		try {
-			examenQ = HibernateUtil.currentSession().find("from Examen_Question where Examen_ID = 12");
-		} catch (HibernateException e) {
-			e.printStackTrace();
-		}
-		
-		if (examenQ != null)
-		{
-			for (ExamenQuestion eq : examenQ)
-			{
-				try {
-					questions.addAll(HibernateUtil.currentSession().find("from Question where Question_ID =" + eq.getQuestion()));
-				} catch (HibernateException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		req.setAttribute("questions", questions);
-		getServletContext().getRequestDispatcher(urlHomePageTeacher).forward(req, resp);
+		resp.sendRedirect(urlExamens);
 	}
 	
 	@Override
@@ -103,8 +78,7 @@ public class HomePageServlet extends AuthentificateHttpServlet {
 	@Override
 	public void doGetAdmin(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
-
-		getServletContext().getRequestDispatcher(urlHomePageAdmin).forward(req, resp);
+		resp.sendRedirect(urlExamens);
 	}	
 
 }
